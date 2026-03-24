@@ -1,43 +1,47 @@
 [
   {
-    "ts": 1774392396424,
-    "perfTs": 630.1999999880791,
-    "eventTs": 627.3000000119209,
+    "ts": 1774392543759,
+    "perfTs": 1359.5999999642372,
+    "eventTs": 1356.2999999523163,
     "kind": "interaction",
     "eventName": "click",
-    "uid": "mainTabs",
-    "traceId": "i-mn57f3ig-fwz0pz",
-    "componentType": "Tabs",
-    "componentLabel": "Main tabs",
+    "uid": "userTable",
+    "traceId": "i-mn57i973-jatwkb",
+    "componentType": "Table",
+    "componentLabel": "User list",
     "interaction": "click",
     "ariaRole": "button",
-    "ariaName": "Add User",
+    "ariaName": "Delete Leanne Graham",
     "detail": {
-      "componentId": "mainTabs",
+      "componentId": "userTable",
       "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
-      "text": "UsersSettingsAboutUsersAdd UseridnameemailphoneActionsFilter by phone:All users",
+      "testIdsInPath": [
+        "userTable",
+        "mainTabs"
+      ],
+      "selectorPath": "[data-testid=\"userTable\"] >> text=Delete",
+      "text": "idnameemailphoneActions1Leanne GrahamSincere@april.biz1-770-736-8031EditDelet…",
       "ariaRole": "button",
-      "ariaName": "Add User",
+      "ariaName": "Delete Leanne Graham",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=Add User\",\n  \"text\": \"UsersSettingsAboutUsersAdd UseridnameemailphoneActionsFilter by phone:All users\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
+    "text": "{\n  \"componentId\": \"userTable\",\n  \"targetTag\": \"BUTTON\",\n  \"testIdsInPath\": [\n    \"userTable\",\n    \"mainTabs\"\n  ],\n  \"selectorPath\": \"[data-testid=\\\"userTable\\\"] >> text=Delete\",\n  \"text\": \"idnameemailphoneActions1Leanne GrahamSincere@april.biz1-770-736-8031EditDelet…\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Delete Leanne Graham\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774392396426,
-    "perfTs": 632.3000000119209,
-    "traceId": "i-mn57f3ig-fwz0pz",
-    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"args\": [\n      {\n        \"_reactName\": \"onClick\",\n        \"_targetInst\": null,\n        \"type\": \"click\",\n        \"nativeEvent\": {\n          \"isTrusted\": true\n        },\n        \"target\": \"[DOM Node]\",\n        \"currentTarget\": \"[DOM Node]\",\n        \"eventPhase\": 3,\n        \"bubbles\": true,\n        \"cancelable\": true,\n        \"timeStamp\": 627.3000000119209,\n        \"defaultPrevented\": true,\n        \"isTrusted\": true,\n        \"view\": \"[Window]\",\n        \"detail\": 1,\n        \"screenX\": 1304,\n        \"screenY\": 311,\n        \"clientX\": 1282,\n        \"clientY\": 159,\n        \"pageX\": 1282,\n        \"pageY\": 159,\n        \"ctrlKey\": false,\n        \"shiftKey\": false,\n        \"altKey\": false,\n        \"metaKey\": false,\n        \"getModifierState\": \"[Function]\",\n        \"button\": 0,\n        \"buttons\": 0,\n        \"relatedTarget\": null,\n        \"movementX\": 0,\n        \"movementY\": 0,\n        \"isDefaultPrevented\": \"[Function]\",\n        \"isPropagationStopped\": \"[Function]\"\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\"\n  }\n]",
+    "ts": 1774392543761,
+    "perfTs": 1361.5999999642372,
+    "traceId": "i-mn57i973-jatwkb",
+    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Delete\",\n    \"args\": [\n      {\n        \"_reactName\": \"onClick\",\n        \"_targetInst\": null,\n        \"type\": \"click\",\n        \"nativeEvent\": {\n          \"isTrusted\": true\n        },\n        \"target\": \"[DOM Node]\",\n        \"currentTarget\": \"[DOM Node]\",\n        \"eventPhase\": 3,\n        \"bubbles\": true,\n        \"cancelable\": true,\n        \"timeStamp\": 1356.2999999523163,\n        \"defaultPrevented\": true,\n        \"isTrusted\": true,\n        \"view\": \"[Window]\",\n        \"detail\": 1,\n        \"screenX\": 1202,\n        \"screenY\": 399,\n        \"clientX\": 1180,\n        \"clientY\": 247,\n        \"pageX\": 1180,\n        \"pageY\": 247,\n        \"ctrlKey\": false,\n        \"shiftKey\": false,\n        \"altKey\": false,\n        \"metaKey\": false,\n        \"getModifierState\": \"[Function]\",\n        \"button\": 0,\n        \"buttons\": 0,\n        \"relatedTarget\": null,\n        \"movementX\": 0,\n        \"movementY\": 0,\n        \"isDefaultPrevented\": \"[Function]\",\n        \"isPropagationStopped\": \"[Function]\"\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 1368,\n      \"end\": 1749\n    },\n    \"handlerCode\": \"(eventArgs, options) => {\\n            return Actions.callApi({\\n              uid: undefined,\\n              headers: undefined, \\n              method: \\\"delete\\\", \\n              url: \\\"/api/users/{$item.id}\\\", \\n              queryParams: undefined, \\n              rawBody: undefined, \\n              body: undefined || (options?.passAsDefaultBody ? eventArgs : undefined), \\n              confirmTitle: undefined, \\n              confirmMessage: \\\"Are you sure you want to delete '{$item.name}'?\\\", \\n              confirmButtonLabel: undefined, \\n              inProgressNotificationMessage: undefined, \\n              completedNotificationMessage: undefined, \\n              errorNotificationMessage: undefined, \\n              params: { '$param': eventArgs }, \\n              onError: undefined, \\n              onProgress: undefined, \\n              onBeforeRequest: undefined, \\n              onSuccess: {\\\"__PARSED\\\":true,\\\"statements\\\":[{\\\"expr\\\":{\\\"obj\\\":{\\\"obj\\\":{\\\"name\\\":\\\"users\\\",\\\"type\\\":107,\\\"nodeId\\\":177,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"source\\\":\\\"users\\\"},\\\"member\\\":\\\"refetch\\\",\\\"opt\\\":false,\\\"type\\\":105,\\\"nodeId\\\":178,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\"refetch\\\",\\\"type\\\":3,\\\"startPosition\\\":6,\\\"endPosition\\\":13,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":6,\\\"endColumn\\\":13},\\\"source\\\":\\\"users.refetch\\\"},\\\"arguments\\\":[],\\\"type\\\":104,\\\"nodeId\\\":179,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\")\\\",\\\"type\\\":2,\\\"startPosition\\\":14,\\\"endPosition\\\":15,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":14,\\\"endColumn\\\":15},\\\"source\\\":\\\"users.refetch()\\\"},\\\"type\\\":3,\\\"nodeId\\\":180,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\")\\\",\\\"type\\\":2,\\\"startPosition\\\":14,\\\"endPosition\\\":15,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":14,\\\"endColumn\\\":15}}],\\\"parseId\\\":6,\\\"source\\\":\\\"users.refetch()\\\"}, \\n              updates: undefined, \\n              optimisticValue: undefined, \\n              payloadType: undefined, \\n              getOptimisticValue: undefined, \\n              invalidates: undefined, \\n              when: undefined }, { resolveBindingExpressions: true });\\n          }\"\n  }\n]",
     "kind": "handler:start",
     "eventName": "click",
     "componentType": "Button",
-    "componentLabel": "Add User",
+    "componentLabel": "Delete",
     "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
     "ownerSource": {
-      "start": 845,
-      "end": 959
+      "start": 1368,
+      "end": 1749
     },
-    "handlerCode": "editingUserId = null; userDialog.open()",
+    "handlerCode": "(eventArgs, options) => {\n            return Actions.callApi({\n              uid: undefined,\n              headers: undefined, \n              method: \"delete\", \n              url: \"/api/users/{$item.id}\", \n              queryParams: undefined, \n              rawBody: undefined, \n              body: undefined || (options?.passAsDefaultBody ? eventArgs : undefined), \n              confirmTitle: undefined, \n              confirmMessage: \"Are you sure you want to delete '{$item.name}'?\", \n              confirmButtonLabel: undefined, \n              inProgressNotificationMessage: undefined, \n              completedNotificationMessage: undefined, \n              errorNotificationMessage: undefined, \n              params: { '$param': eventArgs }, \n              onError: undefined, \n              onProgress: undefined, \n              onBeforeRequest: undefined, \n              onSuccess: {\"__PARSED\":true,\"statements\":[{\"expr\":{\"obj\":{\"obj\":{\"name\":\"users\",\"type\":107,\"nodeId\":177,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"source\":\"users\"},\"member\":\"refetch\",\"opt\":false,\"type\":105,\"nodeId\":178,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\"refetch\",\"type\":3,\"startPosition\":6,\"endPosition\":13,\"startLine\":1,\"endLine\":1,\"startColumn\":6,\"endColumn\":13},\"source\":\"users.refetch\"},\"arguments\":[],\"type\":104,\"nodeId\":179,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\")\",\"type\":2,\"startPosition\":14,\"endPosition\":15,\"startLine\":1,\"endLine\":1,\"startColumn\":14,\"endColumn\":15},\"source\":\"users.refetch()\"},\"type\":3,\"nodeId\":180,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\")\",\"type\":2,\"startPosition\":14,\"endPosition\":15,\"startLine\":1,\"endLine\":1,\"startColumn\":14,\"endColumn\":15}}],\"parseId\":6,\"source\":\"users.refetch()\"}, \n              updates: undefined, \n              optimisticValue: undefined, \n              payloadType: undefined, \n              getOptimisticValue: undefined, \n              invalidates: undefined, \n              when: undefined }, { resolveBindingExpressions: true });\n          }",
     "eventArgs": [
       {
         "_reactName": "onClick",
@@ -51,17 +55,17 @@
         "eventPhase": 3,
         "bubbles": true,
         "cancelable": true,
-        "timeStamp": 627.3000000119209,
+        "timeStamp": 1356.2999999523163,
         "defaultPrevented": true,
         "isTrusted": true,
         "view": "[Window]",
         "detail": 1,
-        "screenX": 1304,
-        "screenY": 311,
-        "clientX": 1282,
-        "clientY": 159,
-        "pageX": 1282,
-        "pageY": 159,
+        "screenX": 1202,
+        "screenY": 399,
+        "clientX": 1180,
+        "clientY": 247,
+        "pageX": 1180,
+        "pageY": 247,
         "ctrlKey": false,
         "shiftKey": false,
         "altKey": false,
@@ -78,317 +82,76 @@
     ]
   },
   {
-    "ts": 1774392396427,
-    "perfTs": 633.1999999880791,
-    "traceId": "t-mn57f3ij-zen0m0",
-    "kind": "method:call",
-    "component": "userDialog",
-    "componentLabel": "userDialog",
-    "displayLabel": "userDialog.open()"
+    "ts": 1774392543764,
+    "perfTs": 1364.199999988079,
+    "traceId": "i-mn57i973-jatwkb",
+    "kind": "modal:show",
+    "modalType": "confirmation",
+    "title": "Confirm Operation",
+    "buttons": [
+      {
+        "label": "Yes",
+        "value": true
+      }
+    ]
   },
   {
-    "ts": 1774392396445,
-    "perfTs": 651.3000000119209,
-    "traceId": "t-mn57f3j1-7xblgo",
+    "ts": 1774392543772,
+    "perfTs": 1372.199999988079,
+    "traceId": "t-mn57i97g-y0uf9x",
     "kind": "focus:change",
     "component": "Button",
     "eventName": "lostFocus",
-    "ariaName": "Add User",
+    "ariaName": "Delete Leanne Graham",
     "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
     "ownerSource": {
-      "start": 845,
-      "end": 959
+      "start": 1368,
+      "end": 1749
     }
   },
   {
-    "ts": 1774392396449,
-    "perfTs": 655.1000000238419,
-    "traceId": "i-mn57f3ig-fwz0pz",
-    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"duration\": 22.80000001192093,\n    \"startPerfTs\": 632.1999999880791,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\",\n    \"traceId\": \"i-mn57f3ig-fwz0pz\"\n  }\n]",
-    "kind": "handler:complete",
-    "eventName": "click",
-    "componentType": "Button",
-    "componentLabel": "Add User",
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 845,
-      "end": 959
-    },
-    "duration": 22.80000001192093,
-    "startPerfTs": 632.1999999880791,
-    "handlerCode": "editingUserId = null; userDialog.open()"
-  },
-  {
-    "ts": 1774392396505,
-    "perfTs": 710.8000000119209,
-    "eventTs": 708.6999999880791,
+    "ts": 1774392543824,
+    "perfTs": 1424.5,
+    "eventTs": 1422.3999999761581,
     "kind": "interaction",
     "eventName": "click",
-    "uid": "userDialog",
-    "traceId": "i-mn57f3kp-4gmieg",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "interaction": "click",
-    "ariaRole": "button",
-    "ariaName": "Save",
-    "detail": {
-      "componentId": "userDialog",
-      "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
-      "text": "Add UserName*Email*CancelSaveclose",
-      "ariaRole": "button",
-      "ariaName": "Save",
-      "button": 0
-    },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Save\",\n  \"text\": \"Add UserName*Email*CancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save\",\n  \"button\": 0\n}"
-  },
-  {
-    "ts": 1774392396506,
-    "perfTs": 712.1999999880791,
-    "traceId": "i-mn57f3kp-4gmieg",
-    "kind": "validation:error",
-    "component": "Form",
-    "displayLabel": "Form: 2 errors: name, email",
-    "errorFields": [
-      "name",
-      "email"
-    ],
-    "errorMessages": [
-      "This field is required",
-      "This field is required"
-    ]
-  },
-  {
-    "ts": 1774392396732,
-    "perfTs": 937.8000000119209,
-    "traceId": "startup-mn57f3bf",
-    "kind": "api:complete",
-    "url": "/api/users",
-    "method": "GET",
-    "instanceId": "ds-0p0ytn-mn57f3ew",
-    "result": [
-      {
-        "id": 1,
-        "name": "Leanne Graham",
-        "email": "Sincere@april.biz",
-        "phone": "1-770-736-8031"
-      },
-      {
-        "id": 2,
-        "name": "Ervin Howell",
-        "email": "Shanna@melissa.tv",
-        "phone": "010-692-6593"
-      }
-    ]
-  },
-  {
-    "ts": 1774392396733,
-    "perfTs": 938.6000000238419,
-    "traceId": "startup-mn57f3bf",
-    "instanceId": "ds-0p0ytn-mn57f3ew",
-    "dataSourceUrl": "/api/users",
-    "ownerUid": "users",
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 27,
-      "end": 72
-    },
-    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-0p0ytn-mn57f3ew\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
-    "kind": "state:changes",
-    "eventName": "DataSource:users",
-    "uid": "users",
-    "componentType": "DataSource",
-    "diffPretty": "path: DataSource:users\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]",
-    "diffJson": [
-      {
-        "path": "DataSource:users",
-        "type": "update",
-        "after": [
-          {
-            "id": 1,
-            "name": "Leanne Graham",
-            "email": "Sincere@april.biz",
-            "phone": "1-770-736-8031"
-          },
-          {
-            "id": 2,
-            "name": "Ervin Howell",
-            "email": "Shanna@melissa.tv",
-            "phone": "010-692-6593"
-          }
-        ],
-        "beforeJson": "undefined",
-        "afterJson": "[\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
-        "diffText": "path: DataSource:users\n- undefined\n+ [\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
-        "diffPretty": "path: DataSource:users\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]"
-      }
-    ]
-  },
-  {
-    "ts": 1774392396737,
-    "perfTs": 943,
-    "traceId": "i-mn57f3kp-4gmieg",
-    "kind": "data:bind",
-    "component": "Table",
-    "componentLabel": "userTable",
-    "displayLabel": "userTable: 0 → 2 items",
-    "prevCount": 0,
-    "rowCount": 2,
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 973,
-      "end": 1796
-    }
-  },
-  {
-    "ts": 1774392396824,
-    "perfTs": 1029.6000000238419,
-    "traceId": "t-mn57f3tk-oobu7c",
-    "kind": "value:change",
-    "component": "TextBox",
-    "displayLabel": "asdf",
-    "eventName": "didChange",
-    "ariaName": "Name",
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 482,
-      "end": 543
-    }
-  },
-  {
-    "ts": 1774392396957,
-    "perfTs": 1162.6000000238419,
-    "eventTs": 1160.199999988079,
-    "kind": "interaction",
-    "eventName": "click",
-    "uid": "userDialog",
-    "traceId": "i-mn57f3x9-ygd0nw",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "interaction": "click",
-    "ariaRole": "button",
-    "ariaName": "Save",
-    "detail": {
-      "componentId": "userDialog",
-      "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
-      "text": "Add UserName*Email*This field is requiredCancelSaveclose",
-      "ariaRole": "button",
-      "ariaName": "Save",
-      "button": 0
-    },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Save\",\n  \"text\": \"Add UserName*Email*This field is requiredCancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save\",\n  \"button\": 0\n}"
-  },
-  {
-    "ts": 1774392396957,
-    "perfTs": 1163.1000000238419,
-    "traceId": "i-mn57f3x9-ygd0nw",
-    "kind": "validation:error",
-    "component": "Form",
-    "displayLabel": "Form: 1 error: email",
-    "errorFields": [
-      "email"
-    ],
-    "errorMessages": [
-      "This field is required"
-    ]
-  },
-  {
-    "ts": 1774392397270,
-    "perfTs": 1475.5,
-    "traceId": "t-mn57f45y-15ndx5",
-    "kind": "value:change",
-    "component": "TextBox",
-    "displayLabel": "abc",
-    "eventName": "didChange",
-    "ariaName": "Email",
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 543,
-      "end": 714
-    }
-  },
-  {
-    "ts": 1774392397308,
-    "perfTs": 1513.6000000238419,
-    "eventTs": 1509.6000000238419,
-    "kind": "interaction",
-    "eventName": "click",
-    "uid": "userDialog",
-    "traceId": "i-mn57f470-5dxwvi",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "interaction": "click",
-    "ariaRole": "dialog",
-    "ariaName": "Add User",
-    "detail": {
-      "componentId": "userDialog",
-      "targetTag": "DIV",
-      "text": "Add UserName*Email*This field is requiredPlease enter a valid email addressCa…",
-      "ariaRole": "dialog",
-      "ariaName": "Add User",
-      "button": 0
-    },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"DIV\",\n  \"text\": \"Add UserName*Email*This field is requiredPlease enter a valid email addressCa…\",\n  \"ariaRole\": \"dialog\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
-  },
-  {
-    "ts": 1774392397424,
-    "perfTs": 1630,
-    "eventTs": 1628.199999988079,
-    "kind": "interaction",
-    "eventName": "click",
-    "uid": "userDialog",
-    "traceId": "i-mn57f4a8-ku8bcn",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
+    "traceId": "i-mn57i973-jatwkb",
+    "componentLabel": "Cancel",
     "interaction": "click",
     "ariaRole": "button",
     "ariaName": "Cancel",
     "detail": {
-      "componentId": "userDialog",
       "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"userDialog\"] >> text=Cancel",
-      "text": "Add UserName*Email*Please enter a valid email addressCancelSaveclose",
+      "text": "Cancel",
       "ariaRole": "button",
       "ariaName": "Cancel",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Cancel\",\n  \"text\": \"Add UserName*Email*Please enter a valid email addressCancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Cancel\",\n  \"button\": 0\n}"
+    "text": "{\n  \"targetTag\": \"BUTTON\",\n  \"text\": \"Cancel\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Cancel\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774392397425,
-    "perfTs": 1630.699999988079,
-    "traceId": "i-mn57f4a8-ku8bcn",
-    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"userDialog\",\n    \"eventName\": \"close\",\n    \"componentType\": \"ModalDialog\",\n    \"componentLabel\": \"Add User\",\n    \"args\": [],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 72,\n      \"end\": 743\n    },\n    \"handlerCode\": \"editingUserId = null\"\n  }\n]",
-    "kind": "handler:start",
-    "eventName": "close",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "uid": "userDialog",
-    "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
-    "ownerSource": {
-      "start": 72,
-      "end": 743
-    },
-    "handlerCode": "editingUserId = null"
+    "ts": 1774392543824,
+    "perfTs": 1424.5,
+    "traceId": "i-mn57i973-jatwkb",
+    "kind": "modal:cancel",
+    "modalType": "confirmation"
   },
   {
-    "ts": 1774392397426,
-    "perfTs": 1631.5,
-    "traceId": "i-mn57f4a8-ku8bcn",
-    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"userDialog\",\n    \"eventName\": \"close\",\n    \"componentType\": \"ModalDialog\",\n    \"componentLabel\": \"Add User\",\n    \"returnValue\": null,\n    \"duration\": 0.8999999761581421,\n    \"startPerfTs\": 1630.6000000238419,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 72,\n      \"end\": 743\n    },\n    \"handlerCode\": \"editingUserId = null\",\n    \"traceId\": \"i-mn57f4a8-ku8bcn\"\n  }\n]",
+    "ts": 1774392543826,
+    "perfTs": 1426.2999999523163,
+    "traceId": "i-mn57i973-jatwkb",
+    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Delete\",\n    \"duration\": 64.79999995231628,\n    \"startPerfTs\": 1361.5,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 1368,\n      \"end\": 1749\n    },\n    \"handlerCode\": \"(eventArgs, options) => {\\n            return Actions.callApi({\\n              uid: undefined,\\n              headers: undefined, \\n              method: \\\"delete\\\", \\n              url: \\\"/api/users/{$item.id}\\\", \\n              queryParams: undefined, \\n              rawBody: undefined, \\n              body: undefined || (options?.passAsDefaultBody ? eventArgs : undefined), \\n              confirmTitle: undefined, \\n              confirmMessage: \\\"Are you sure you want to delete '{$item.name}'?\\\", \\n              confirmButtonLabel: undefined, \\n              inProgressNotificationMessage: undefined, \\n              completedNotificationMessage: undefined, \\n              errorNotificationMessage: undefined, \\n              params: { '$param': eventArgs }, \\n              onError: undefined, \\n              onProgress: undefined, \\n              onBeforeRequest: undefined, \\n              onSuccess: {\\\"__PARSED\\\":true,\\\"statements\\\":[{\\\"expr\\\":{\\\"obj\\\":{\\\"obj\\\":{\\\"name\\\":\\\"users\\\",\\\"type\\\":107,\\\"nodeId\\\":177,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"source\\\":\\\"users\\\"},\\\"member\\\":\\\"refetch\\\",\\\"opt\\\":false,\\\"type\\\":105,\\\"nodeId\\\":178,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\"refetch\\\",\\\"type\\\":3,\\\"startPosition\\\":6,\\\"endPosition\\\":13,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":6,\\\"endColumn\\\":13},\\\"source\\\":\\\"users.refetch\\\"},\\\"arguments\\\":[],\\\"type\\\":104,\\\"nodeId\\\":179,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\")\\\",\\\"type\\\":2,\\\"startPosition\\\":14,\\\"endPosition\\\":15,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":14,\\\"endColumn\\\":15},\\\"source\\\":\\\"users.refetch()\\\"},\\\"type\\\":3,\\\"nodeId\\\":180,\\\"startToken\\\":{\\\"text\\\":\\\"users\\\",\\\"type\\\":3,\\\"startPosition\\\":0,\\\"endPosition\\\":5,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":0,\\\"endColumn\\\":5},\\\"endToken\\\":{\\\"text\\\":\\\")\\\",\\\"type\\\":2,\\\"startPosition\\\":14,\\\"endPosition\\\":15,\\\"startLine\\\":1,\\\"endLine\\\":1,\\\"startColumn\\\":14,\\\"endColumn\\\":15}}],\\\"parseId\\\":6,\\\"source\\\":\\\"users.refetch()\\\"}, \\n              updates: undefined, \\n              optimisticValue: undefined, \\n              payloadType: undefined, \\n              getOptimisticValue: undefined, \\n              invalidates: undefined, \\n              when: undefined }, { resolveBindingExpressions: true });\\n          }\",\n    \"traceId\": \"i-mn57i973-jatwkb\"\n  }\n]",
     "kind": "handler:complete",
-    "eventName": "close",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "uid": "userDialog",
+    "eventName": "click",
+    "componentType": "Button",
+    "componentLabel": "Delete",
     "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
     "ownerSource": {
-      "start": 72,
-      "end": 743
+      "start": 1368,
+      "end": 1749
     },
-    "duration": 0.8999999761581421,
-    "startPerfTs": 1630.6000000238419,
-    "handlerCode": "editingUserId = null"
+    "duration": 64.79999995231628,
+    "startPerfTs": 1361.5,
+    "handlerCode": "(eventArgs, options) => {\n            return Actions.callApi({\n              uid: undefined,\n              headers: undefined, \n              method: \"delete\", \n              url: \"/api/users/{$item.id}\", \n              queryParams: undefined, \n              rawBody: undefined, \n              body: undefined || (options?.passAsDefaultBody ? eventArgs : undefined), \n              confirmTitle: undefined, \n              confirmMessage: \"Are you sure you want to delete '{$item.name}'?\", \n              confirmButtonLabel: undefined, \n              inProgressNotificationMessage: undefined, \n              completedNotificationMessage: undefined, \n              errorNotificationMessage: undefined, \n              params: { '$param': eventArgs }, \n              onError: undefined, \n              onProgress: undefined, \n              onBeforeRequest: undefined, \n              onSuccess: {\"__PARSED\":true,\"statements\":[{\"expr\":{\"obj\":{\"obj\":{\"name\":\"users\",\"type\":107,\"nodeId\":177,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"source\":\"users\"},\"member\":\"refetch\",\"opt\":false,\"type\":105,\"nodeId\":178,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\"refetch\",\"type\":3,\"startPosition\":6,\"endPosition\":13,\"startLine\":1,\"endLine\":1,\"startColumn\":6,\"endColumn\":13},\"source\":\"users.refetch\"},\"arguments\":[],\"type\":104,\"nodeId\":179,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\")\",\"type\":2,\"startPosition\":14,\"endPosition\":15,\"startLine\":1,\"endLine\":1,\"startColumn\":14,\"endColumn\":15},\"source\":\"users.refetch()\"},\"type\":3,\"nodeId\":180,\"startToken\":{\"text\":\"users\",\"type\":3,\"startPosition\":0,\"endPosition\":5,\"startLine\":1,\"endLine\":1,\"startColumn\":0,\"endColumn\":5},\"endToken\":{\"text\":\")\",\"type\":2,\"startPosition\":14,\"endPosition\":15,\"startLine\":1,\"endLine\":1,\"startColumn\":14,\"endColumn\":15}}],\"parseId\":6,\"source\":\"users.refetch()\"}, \n              updates: undefined, \n              optimisticValue: undefined, \n              payloadType: undefined, \n              getOptimisticValue: undefined, \n              invalidates: undefined, \n              when: undefined }, { resolveBindingExpressions: true });\n          }"
   }
 ]
