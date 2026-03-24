@@ -35,7 +35,8 @@ Open the Add User modal, submit an empty form (triggers validation), fill name a
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[add-user.webm](https://github.com/user-attachments/assets/9ffbc1fa-4a1a-47c4-9210-cf701ad30e7a)
+
 
 </details>
 
@@ -59,7 +60,8 @@ Click Edit on an existing user, modify the name in the pre-filled form, save. Ve
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[edit-user.webm](https://github.com/user-attachments/assets/69068cd7-ea3f-4004-80f6-f04b32df3aab)
+
 
 </details>
 
@@ -81,7 +83,8 @@ Click Delete on a user, confirm in the confirmation dialog. Verifies confirmatio
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[delete-user-confirm.webm](https://github.com/user-attachments/assets/bc33b4c6-3913-459f-8f28-b788e6367e98)
+
 
 </details>
 
@@ -101,7 +104,8 @@ Navigate between Users, Settings, and About tabs. Verifies tab switching with fo
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[tab-switch.webm](https://github.com/user-attachments/assets/67149c53-88ac-41c2-9f8e-33742fc1fee8)
+
 
 </details>
 
@@ -121,8 +125,8 @@ Add a user (creates one with no phone), then use the phone filter dropdown to sw
 
 <details>
 <summary>Video</summary>
+[select-filter.webm](https://github.com/user-attachments/assets/f8a2c624-cdcf-4044-b57a-8e49fb4e7401)
 
-_Upload video here_
 
 </details>
 
