@@ -155,7 +155,8 @@ Switch to Settings tab, toggle the Show email switch, decrease Items per page, t
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[toggle-settings.webm](https://github.com/user-attachments/assets/d53b3912-f625-413e-90c6-811370257fb1)
+
 
 </details>
 
