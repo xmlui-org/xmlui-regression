@@ -248,6 +248,7 @@ Click Delete on a user, cancel the confirmation dialog. Verifies no DELETE mutat
 ## Architecture
 
 - `Main.xmlui` / `Main.xmlui.xs` — the app markup and code-behind
+- `components/` — user-defined components (UsersTab, SettingsTab, AboutTab)
 - `api.json` — mock API definition (MSW intercepts `/api/*`)
 - `config.json` — app config including apiInterceptor and xsVerbose
 - `traces/baselines/` — distilled journey baselines (source of truth)
