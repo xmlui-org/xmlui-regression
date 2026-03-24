@@ -25,6 +25,9 @@ cd trace-tools && npm install && npx playwright install chromium && cd ..
 
 ## Journeys
 
+> [!NOTE]
+> Each journey's distilled steps are automatically extracted from a raw XMLUI trace capture. The distiller reduces thousands of low-level engine events to semantic user actions, collapsing keystrokes into fill operations and pairing API calls with their triggers. These distilled steps then drive automatic Playwright test generation — no hand-written test code required.
+
 ### add-user
 
 Open the Add User modal, submit an empty form (triggers validation), fill name and email, submit successfully. Verifies form validation and POST mutation.
@@ -38,8 +41,6 @@ _Upload video here_
 
 <details>
 <summary>Distilled steps (from raw trace)</summary>
-
-These steps are automatically distilled from a raw XMLUI trace capture. The distiller extracts semantic user actions from thousands of low-level engine events, collapsing keystrokes into fill operations and pairing API calls with their triggers.
 
 | # | Action | Target | Details |
 |---|--------|--------|---------|
@@ -65,8 +66,6 @@ _Upload video here_
 <details>
 <summary>Distilled steps (from raw trace)</summary>
 
-These steps are automatically distilled from a raw XMLUI trace capture. The distiller extracts semantic user actions from thousands of low-level engine events, collapsing keystrokes into fill operations and pairing API calls with their triggers.
-
 | # | Action | Target | Details |
 |---|--------|--------|---------|
 | 1 | click | button "Edit Leanne Graham" | Opens edit modal with pre-filled data |
@@ -89,8 +88,6 @@ _Upload video here_
 <details>
 <summary>Distilled steps (from raw trace)</summary>
 
-These steps are automatically distilled from a raw XMLUI trace capture. The distiller extracts semantic user actions from thousands of low-level engine events, collapsing keystrokes into fill operations and pairing API calls with their triggers.
-
 | # | Action | Target | Details |
 |---|--------|--------|---------|
 | 1 | click | button "Delete Leanne Graham" | Confirmation dialog: "Confirm Operation" → Yes, DELETE /api/users/1 |
@@ -110,8 +107,6 @@ _Upload video here_
 
 <details>
 <summary>Distilled steps (from raw trace)</summary>
-
-These steps are automatically distilled from a raw XMLUI trace capture. The distiller extracts semantic user actions from thousands of low-level engine events, collapsing keystrokes into fill operations and pairing API calls with their triggers.
 
 | # | Action | Target | Details |
 |---|--------|--------|---------|
@@ -133,8 +128,6 @@ _Upload video here_
 
 <details>
 <summary>Distilled steps (from raw trace)</summary>
-
-These steps are automatically distilled from a raw XMLUI trace capture. The distiller extracts semantic user actions from thousands of low-level engine events, collapsing keystrokes into fill operations and pairing API calls with their triggers.
 
 | # | Action | Target | Details |
 |---|--------|--------|---------|
