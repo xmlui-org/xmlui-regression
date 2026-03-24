@@ -1,12 +1,12 @@
 [
   {
-    "ts": 1774387419211,
-    "perfTs": 638.1999999880791,
-    "eventTs": 620.6000000238419,
+    "ts": 1774391845465,
+    "perfTs": 632.5,
+    "eventTs": 609.7000000476837,
     "kind": "interaction",
     "eventName": "click",
     "uid": "mainTabs",
-    "traceId": "i-mn54gf2j-o15gg7",
+    "traceId": "i-mn573ae1-yjxhc5",
     "componentType": "Tabs",
     "componentLabel": "Main tabs",
     "interaction": "click",
@@ -16,112 +16,232 @@
       "componentId": "mainTabs",
       "targetTag": "DIV",
       "selectorPath": "[data-testid=\"mainTabs\"] >> text=Settings",
-      "text": "UsersSettingsAboutSettingsShow email column:Items per page:Notes:",
+      "text": "UsersSettingsAboutSettingsShow email columnItems per pageNotesCancelSave Sett…",
       "ariaRole": "tab",
       "ariaName": "Settings",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"DIV\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=Settings\",\n  \"text\": \"UsersSettingsAboutSettingsShow email column:Items per page:Notes:\",\n  \"ariaRole\": \"tab\",\n  \"ariaName\": \"Settings\",\n  \"button\": 0\n}"
+    "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"DIV\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=Settings\",\n  \"text\": \"UsersSettingsAboutSettingsShow email columnItems per pageNotesCancelSave Sett…\",\n  \"ariaRole\": \"tab\",\n  \"ariaName\": \"Settings\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774387419253,
-    "perfTs": 680.6999999880791,
-    "traceId": "i-mn54gf2j-o15gg7",
-    "kind": "focus:change",
-    "component": "Tabs",
-    "displayLabel": "About",
-    "tabIndex": 2,
-    "tabId": ":rj:",
-    "tabLabel": "About"
-  },
-  {
-    "ts": 1774387419257,
-    "perfTs": 684.3000000119209,
-    "eventTs": 679.9000000357628,
+    "ts": 1774391845521,
+    "perfTs": 687.8000000119209,
+    "eventTs": 685,
     "kind": "interaction",
     "eventName": "click",
-    "uid": "mainTabs",
-    "traceId": "i-mn54gf3t-e03n8z",
-    "componentType": "Tabs",
-    "componentLabel": "Main tabs",
+    "uid": "settingsForm",
+    "traceId": "i-mn573afl-if414w",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
     "interaction": "click",
-    "ariaRole": "tab",
-    "ariaName": "About",
+    "ariaRole": "switch",
     "detail": {
-      "componentId": "mainTabs",
-      "targetTag": "DIV",
-      "selectorPath": "[data-testid=\"mainTabs\"] >> text=About",
-      "text": "UsersSettingsAboutAboutXMLUI Regression Test App — exercises core components …",
-      "ariaRole": "tab",
-      "ariaName": "About",
+      "componentId": "settingsForm",
+      "targetTag": "INPUT",
+      "testIdsInPath": [
+        "settingsForm",
+        "mainTabs"
+      ],
+      "text": "Show email columnItems per pageNotesCancelSave Settings",
+      "ariaRole": "switch",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"DIV\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=About\",\n  \"text\": \"UsersSettingsAboutAboutXMLUI Regression Test App — exercises core components …\",\n  \"ariaRole\": \"tab\",\n  \"ariaName\": \"About\",\n  \"button\": 0\n}"
+    "text": "{\n  \"componentId\": \"settingsForm\",\n  \"targetTag\": \"INPUT\",\n  \"testIdsInPath\": [\n    \"settingsForm\",\n    \"mainTabs\"\n  ],\n  \"text\": \"Show email columnItems per pageNotesCancelSave Settings\",\n  \"ariaRole\": \"switch\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774387419510,
-    "perfTs": 937.9000000357628,
-    "traceId": "startup-mn54gev5",
-    "kind": "api:complete",
-    "url": "/api/users",
-    "method": "GET",
-    "instanceId": "ds-vr5c25-mn54gew6",
-    "result": [
+    "ts": 1774391845572,
+    "perfTs": 738.6000000238419,
+    "traceId": "t-mn573agz-a313x7",
+    "kind": "value:change",
+    "component": "NumberBox",
+    "displayLabel": "9",
+    "eventName": "didChange",
+    "ariaName": "Items per page",
+    "ownerFileId": "http://localhost:8000/components/SettingsTab.xmlui",
+    "ownerSource": {
+      "start": 447,
+      "end": 566
+    }
+  },
+  {
+    "ts": 1774391845578,
+    "perfTs": 744.9000000357628,
+    "eventTs": 736.2000000476837,
+    "kind": "interaction",
+    "eventName": "click",
+    "uid": "settingsForm",
+    "traceId": "i-mn573ah6-pfyjp3",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "interaction": "click",
+    "ariaRole": "button",
+    "ariaName": "Decrease Items per page",
+    "detail": {
+      "componentId": "settingsForm",
+      "targetTag": "svg",
+      "testIdsInPath": [
+        "settingsForm",
+        "mainTabs"
+      ],
+      "text": "Show email columnItems per pageNotesCancelSave Settings",
+      "ariaRole": "button",
+      "ariaName": "Decrease Items per page",
+      "button": 0
+    },
+    "text": "{\n  \"componentId\": \"settingsForm\",\n  \"targetTag\": \"svg\",\n  \"testIdsInPath\": [\n    \"settingsForm\",\n    \"mainTabs\"\n  ],\n  \"text\": \"Show email columnItems per pageNotesCancelSave Settings\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Decrease Items per page\",\n  \"button\": 0\n}"
+  },
+  {
+    "ts": 1774391845898,
+    "perfTs": 1065.2000000476837,
+    "eventTs": 1064.800000011921,
+    "kind": "interaction",
+    "eventName": "keydown",
+    "uid": "settingsForm",
+    "traceId": "i-mn573aq2-rl8jp9",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "interaction": "keydown",
+    "ariaRole": "textbox",
+    "ariaName": "Notes",
+    "detail": {
+      "componentId": "settingsForm",
+      "targetTag": "TEXTAREA",
+      "testIdsInPath": [
+        "settingsForm",
+        "mainTabs"
+      ],
+      "text": "Show email columnItems per pageNotesCancelSave Settings",
+      "ariaRole": "textbox",
+      "ariaName": "Notes",
+      "key": "Delete",
+      "code": "Delete",
+      "ctrlKey": false,
+      "metaKey": false,
+      "shiftKey": false,
+      "altKey": false
+    },
+    "text": "{\n  \"componentId\": \"settingsForm\",\n  \"targetTag\": \"TEXTAREA\",\n  \"testIdsInPath\": [\n    \"settingsForm\",\n    \"mainTabs\"\n  ],\n  \"text\": \"Show email columnItems per pageNotesCancelSave Settings\",\n  \"ariaRole\": \"textbox\",\n  \"ariaName\": \"Notes\",\n  \"key\": \"Delete\",\n  \"code\": \"Delete\",\n  \"ctrlKey\": false,\n  \"metaKey\": false,\n  \"shiftKey\": false,\n  \"altKey\": false\n}"
+  },
+  {
+    "ts": 1774391845937,
+    "perfTs": 1104.300000011921,
+    "eventTs": 1100.9000000357628,
+    "kind": "interaction",
+    "eventName": "click",
+    "uid": "settingsForm",
+    "traceId": "i-mn573ar5-28ydc1",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "interaction": "click",
+    "ariaRole": "button",
+    "ariaName": "Save Settings",
+    "detail": {
+      "componentId": "settingsForm",
+      "targetTag": "BUTTON",
+      "testIdsInPath": [
+        "settingsForm",
+        "mainTabs"
+      ],
+      "selectorPath": "[data-testid=\"settingsForm\"] >> text=Save Settings",
+      "text": "Show email columnItems per pageNotesCancelSave Settings",
+      "ariaRole": "button",
+      "ariaName": "Save Settings",
+      "button": 0
+    },
+    "text": "{\n  \"componentId\": \"settingsForm\",\n  \"targetTag\": \"BUTTON\",\n  \"testIdsInPath\": [\n    \"settingsForm\",\n    \"mainTabs\"\n  ],\n  \"selectorPath\": \"[data-testid=\\\"settingsForm\\\"] >> text=Save Settings\",\n  \"text\": \"Show email columnItems per pageNotesCancelSave Settings\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save Settings\",\n  \"button\": 0\n}"
+  },
+  {
+    "ts": 1774391845941,
+    "perfTs": 1108,
+    "traceId": "i-mn573ar5-28ydc1",
+    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"settingsForm\",\n    \"eventName\": \"submit\",\n    \"componentType\": \"Form\",\n    \"componentLabel\": \"Settings form\",\n    \"args\": [\n      {\n        \"showEmail\": false,\n        \"pageSize\": 9,\n        \"notes\": \"\"\n      },\n      {\n        \"passAsDefaultBody\": true\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/components/SettingsTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 119,\n      \"end\": 673\n    },\n    \"handlerCode\": \"(data) => { showEmail = data.showEmail; pageSize = data.pageSize; notes = data.notes }\"\n  }\n]",
+    "kind": "handler:start",
+    "eventName": "submit",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "uid": "settingsForm",
+    "ownerFileId": "http://localhost:8000/components/SettingsTab.xmlui",
+    "ownerSource": {
+      "start": 119,
+      "end": 673
+    },
+    "handlerCode": "(data) => { showEmail = data.showEmail; pageSize = data.pageSize; notes = data.notes }",
+    "eventArgs": [
       {
-        "id": 1,
-        "name": "Leanne Graham",
-        "email": "Sincere@april.biz",
-        "phone": "1-770-736-8031"
+        "showEmail": false,
+        "pageSize": 9,
+        "notes": ""
       },
       {
-        "id": 2,
-        "name": "Ervin Howell",
-        "email": "Shanna@melissa.tv",
-        "phone": "010-692-6593"
+        "passAsDefaultBody": true
       }
     ]
   },
   {
-    "ts": 1774387419512,
-    "perfTs": 939.4000000357628,
-    "traceId": "startup-mn54gev5",
-    "instanceId": "ds-vr5c25-mn54gew6",
-    "dataSourceUrl": "/api/users",
-    "ownerUid": "users",
-    "ownerFileId": "http://localhost:8000/Main.xmlui",
-    "ownerSource": {
-      "start": 137,
-      "end": 183
-    },
-    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-vr5c25-mn54gew6\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
+    "ts": 1774391845941,
+    "perfTs": 1108.5,
+    "traceId": "i-mn573ar5-28ydc1",
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"settingsForm\",\n    \"eventName\": \"submit\",\n    \"componentType\": \"Form\",\n    \"componentLabel\": \"Settings form\",\n    \"changes\": [\n      {\n        \"path\": \"showEmail\",\n        \"action\": \"set\",\n        \"previousValue\": true,\n        \"newValue\": false\n      }\n    ],\n    \"diff\": [\n      {\n        \"path\": \"showEmail\",\n        \"type\": \"update\",\n        \"before\": true,\n        \"after\": false,\n        \"beforeJson\": \"true\",\n        \"afterJson\": \"false\",\n        \"diffText\": \"path: showEmail\\n- true\\n+ false\",\n        \"diffPretty\": \"path: showEmail\\n- true\\n+ false\"\n      }\n    ]\n  }\n]",
     "kind": "state:changes",
-    "eventName": "DataSource:users",
-    "uid": "users",
-    "componentType": "DataSource",
-    "diffPretty": "path: DataSource:users\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]",
+    "eventName": "submit",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "uid": "settingsForm",
+    "diffPretty": "path: showEmail\n- true\n+ false",
     "diffJson": [
       {
-        "path": "DataSource:users",
+        "path": "showEmail",
         "type": "update",
-        "after": [
-          {
-            "id": 1,
-            "name": "Leanne Graham",
-            "email": "Sincere@april.biz",
-            "phone": "1-770-736-8031"
-          },
-          {
-            "id": 2,
-            "name": "Ervin Howell",
-            "email": "Shanna@melissa.tv",
-            "phone": "010-692-6593"
-          }
-        ],
-        "beforeJson": "undefined",
-        "afterJson": "[\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
-        "diffText": "path: DataSource:users\n- undefined\n+ [\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
-        "diffPretty": "path: DataSource:users\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]"
+        "before": true,
+        "after": false,
+        "beforeJson": "true",
+        "afterJson": "false",
+        "diffText": "path: showEmail\n- true\n+ false",
+        "diffPretty": "path: showEmail\n- true\n+ false"
       }
     ]
+  },
+  {
+    "ts": 1774391845953,
+    "perfTs": 1119.800000011921,
+    "traceId": "i-mn573ar5-28ydc1",
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"settingsForm\",\n    \"eventName\": \"submit\",\n    \"componentType\": \"Form\",\n    \"componentLabel\": \"Settings form\",\n    \"changes\": [\n      {\n        \"path\": \"pageSize\",\n        \"action\": \"set\",\n        \"previousValue\": 10,\n        \"newValue\": 9\n      }\n    ],\n    \"diff\": [\n      {\n        \"path\": \"pageSize\",\n        \"type\": \"update\",\n        \"before\": 10,\n        \"after\": 9,\n        \"beforeJson\": \"10\",\n        \"afterJson\": \"9\",\n        \"diffText\": \"path: pageSize\\n- 10\\n+ 9\",\n        \"diffPretty\": \"path: pageSize\\n- 10\\n+ 9\"\n      }\n    ]\n  }\n]",
+    "kind": "state:changes",
+    "eventName": "submit",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "uid": "settingsForm",
+    "diffPretty": "path: pageSize\n- 10\n+ 9",
+    "diffJson": [
+      {
+        "path": "pageSize",
+        "type": "update",
+        "before": 10,
+        "after": 9,
+        "beforeJson": "10",
+        "afterJson": "9",
+        "diffText": "path: pageSize\n- 10\n+ 9",
+        "diffPretty": "path: pageSize\n- 10\n+ 9"
+      }
+    ]
+  },
+  {
+    "ts": 1774391845959,
+    "perfTs": 1126.4000000357628,
+    "traceId": "i-mn573ar5-28ydc1",
+    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"settingsForm\",\n    \"eventName\": \"submit\",\n    \"componentType\": \"Form\",\n    \"componentLabel\": \"Settings form\",\n    \"duration\": 18.399999976158142,\n    \"startPerfTs\": 1107.9000000357628,\n    \"ownerFileId\": \"http://localhost:8000/components/SettingsTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 119,\n      \"end\": 673\n    },\n    \"handlerCode\": \"(data) => { showEmail = data.showEmail; pageSize = data.pageSize; notes = data.notes }\",\n    \"traceId\": \"i-mn573ar5-28ydc1\"\n  }\n]",
+    "kind": "handler:complete",
+    "eventName": "submit",
+    "componentType": "Form",
+    "componentLabel": "Settings form",
+    "uid": "settingsForm",
+    "ownerFileId": "http://localhost:8000/components/SettingsTab.xmlui",
+    "ownerSource": {
+      "start": 119,
+      "end": 673
+    },
+    "duration": 18.399999976158142,
+    "startPerfTs": 1107.9000000357628,
+    "handlerCode": "(data) => { showEmail = data.showEmail; pageSize = data.pageSize; notes = data.notes }"
   }
 ]

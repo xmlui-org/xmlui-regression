@@ -148,6 +148,30 @@ Add a user (creates one with no phone), then use the phone filter dropdown to sw
 
 </details>
 
+### toggle-settings
+
+Switch to Settings tab, toggle the Show email switch, decrease Items per page, type notes, save. Verifies Form with Switch, NumberBox, and TextArea bindings plus form submit.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | tab "Settings" | Switch to Settings tab |
+| 2 | click | switch | Toggle Show email |
+| 3 | click | button "Decrease Items per page" | NumberBox spin button |
+| 4 | fill | textbox "Notes" | `xxx` |
+| 5 | click | button "Save Settings" | Form submit |
+
+</details>
+
 ## Architecture
 
 - `Main.xmlui` / `Main.xmlui.xs` — the app markup and code-behind

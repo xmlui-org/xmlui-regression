@@ -1,0 +1,14 @@
+<Component name="SettingsTab">
+  <VStack padding="$space-4" gap="$space-4" maxWidth="$space-128">
+    <H1>Settings</H1>
+    <Form id="settingsForm" aria-label="Settings form"
+      data="{{ showEmail: showEmail, pageSize: pageSize, notes: notes }}"
+      onSubmit="(data) => { showEmail = data.showEmail; pageSize = data.pageSize; notes = data.notes }"
+      saveLabel="Save Settings">
+      <Switch bindTo="showEmail" label="Show email column" />
+      <NumberBox bindTo="pageSize" label="Items per page" width="$space-24"
+        minValue="{1}" maxValue="{100}" />
+      <TextArea bindTo="notes" label="Notes" placeholder="Enter notes..." width="$space-96" />
+    </Form>
+  </VStack>
+</Component>

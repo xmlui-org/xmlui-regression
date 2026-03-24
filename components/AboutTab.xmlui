@@ -1,0 +1,6 @@
+<Component name="AboutTab">
+  <VStack padding="$space-4" gap="$space-4">
+    <H1>About</H1>
+    <Text>XMLUI Regression Test App — exercises core components and patterns.</Text>
+  </VStack>
+</Component>
