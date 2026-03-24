@@ -1,0 +1,30 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Settings",
+        "ariaRole": "tab",
+        "ariaName": "Settings",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=About",
+        "ariaRole": "tab",
+        "ariaName": "About",
+        "testId": "mainTabs"
+      }
+    }
+  ]
+}

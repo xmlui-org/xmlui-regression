@@ -1,6 +1,7 @@
 /**
  * Distill parsed trace into essential user journey steps
  */
+const TraceNormalize = require('./trace-normalize');
 
 
 /**
@@ -196,34 +197,10 @@ function distillTrace(logs) {
     traces.get(traceId).events.push(log);
   }
 
-  // Re-home orphaned value:change events with files metadata to the nearest
-  // preceding interaction trace group. FileInput's onDidChange fires outside
-  // any XMLUI interaction context (triggered by native input change event),
-  // so these events land in the 'unknown' bucket with no traceId.
-  const unknownGroup = traces.get('unknown');
-  if (unknownGroup) {
-    const fileEvents = unknownGroup.events.filter(e =>
-      e.kind === 'value:change' && e.files && e.files.length > 0
-    );
-    for (const fe of fileEvents) {
-      const feTs = fe.perfTs || fe.ts || 0;
-      // Find the interaction trace group with the closest preceding timestamp
-      let bestTrace = null;
-      let bestTs = -Infinity;
-      for (const [tid, tg] of traces) {
-        if (tid === 'unknown') continue;
-        const hasInteraction = tg.events.some(e => e.kind === 'interaction');
-        if (hasInteraction && tg.firstPerfTs <= feTs && tg.firstPerfTs > bestTs) {
-          bestTrace = tg;
-          bestTs = tg.firstPerfTs;
-        }
-      }
-      if (bestTrace) {
-        bestTrace.events.push(fe);
-        unknownGroup.events = unknownGroup.events.filter(e => e !== fe);
-      }
-    }
-  }
+  // Re-home orphaned value:change events to the nearest interaction trace group.
+  // Uses shared logic from trace-normalize.js.
+  const traceArrayForRehoming = Array.from(traces.values());
+  TraceNormalize.rehomeOrphanedValueChanges(traceArrayForRehoming, e => e.perfTs || e.ts || 0);
 
   // Convert to array and sort by first event time
   const traceArray = Array.from(traces.values())

@@ -6,7 +6,7 @@ const { distillTrace } = require('./distill-trace');
 
 /** Escape a string for embedding inside a JS single-quoted literal. */
 function esc(s) {
-  return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+  return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/[\u2018\u2019]/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '\\r');
 }
 
 function generatePlaywright(distilled, options = {}) {
@@ -156,6 +156,10 @@ function generatePlaywright(distilled, options = {}) {
             // wait for them to be enabled, not just present in the DOM.
             const inList = nt.component === 'List' || nt.component === 'Table';
             stepLines.push(`  await expect(page.getByRole('button', { name: '${nt.ariaName}', exact: true })${inList ? '.first()' : ''}).toBeEnabled({ timeout: 15000 });`);
+          } else if (nt.ariaRole === 'checkbox' && nt.ariaName?.startsWith('Select ')) {
+            // Table row selection checkboxes are hidden until hover — wait for the row
+            const rowName = esc(nt.ariaName.replace('Select ', ''));
+            stepLines.push(`  await ${rowLocator(rowName)}.waitFor();`);
           } else {
             stepLines.push(`  await page.getByRole('${nt.ariaRole}', { name: '${nt.ariaName}', exact: true }).waitFor();`);
           }
@@ -273,9 +277,21 @@ function generatePlaywright(distilled, options = {}) {
     // Capture trace even on failure (if browser still open)
     try {
       await page.waitForTimeout(500);
-      const logs = await page.evaluate(() => (window as any)._xsLogs || []);
+      const logsJson = await page.evaluate(() => {
+        const logs = (window as any)._xsLogs || [];
+        const seen = new WeakSet();
+        return JSON.stringify(logs, (_key, val) => {
+          if (typeof val === 'function') return undefined;
+          if (val && typeof val === 'object') {
+            if (seen.has(val)) return '[Circular]';
+            seen.add(val);
+          }
+          return val;
+        }, 2);
+      });
+      const logs = JSON.parse(logsJson);
       const traceFile = process.env.TRACE_OUTPUT || 'captured-trace.json';
-      fs.writeFileSync(traceFile, JSON.stringify(logs, null, 2));
+      fs.writeFileSync(traceFile, logsJson);
       console.log(\`Trace captured to \${traceFile} (\${logs.length} events)\`);
       // Report XMLUI errors from _xsLogs
       const errors = logs.filter((e: any) => e.kind?.startsWith('error'));
@@ -670,12 +686,17 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
       break;
 
     case 'click': {
-      // Skip clicks on unnamed form inputs — just focus noise
-      if (step.target?.ariaRole && !step.target?.ariaName &&
+      // Skip clicks on form inputs when followed by a fill on the same field — the fill implies focus
+      if (step.target?.ariaRole &&
           ['textbox', 'textarea', 'spinbutton'].includes(step.target.ariaRole) &&
           !step.target?.formData) {
-        lines.pop();
-        return [];
+        const allSteps = fillPlan._allSteps || [];
+        const nextStep = allSteps[stepIndex + 1];
+        if (!step.target?.ariaName ||
+            (nextStep?.action === 'fill' && nextStep?.target?.ariaName === step.target?.ariaName)) {
+          lines.pop();
+          return [];
+        }
       }
       // Skip clicks on unnamed structural roles (banner, navigation, etc.) — noise
       // Only keep if there are mutating API calls (not just coincidental GETs)
@@ -689,6 +710,18 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
       lines.push(...clickLines);
       if (clickLines._skipAwait) {
         return lines;
+      }
+      // After clicking a button, if the next step targets a textbox, wait for it to appear
+      // and stabilize (React state settlement after conditional rendering)
+      if (step.target?.ariaRole === 'button') {
+        const allSteps = fillPlan._allSteps || [];
+        const nextStep = allSteps[stepIndex + 1];
+        if (nextStep && (nextStep.action === 'fill' || nextStep.action === 'click') &&
+            nextStep.target?.ariaRole === 'textbox' && nextStep.target?.ariaName &&
+            !step.await?.api?.length) {
+          lines.push(`${indent}await page.getByRole('textbox', { name: '${esc(nextStep.target.ariaName)}' }).waitFor();`);
+          lines.push(`${indent}await page.waitForTimeout(300);`);
+        }
       }
       break;
     }
@@ -833,6 +866,13 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
       const ariaRole = step.target?.ariaRole;
       const ariaName = vc.ariaName || step.target?.ariaName;
 
+      // NumberBox: assert on spinbutton role with aria-valuenow
+      if (vcComponent === 'NumberBox' && vc.ariaName) {
+        const spinLocator = `page.getByRole('spinbutton', { name: '${esc(vc.ariaName)}' })`;
+        lines.push(`${indent}await expect(${spinLocator}).toHaveAttribute('aria-valuenow', '${escaped}');`);
+        continue;
+      }
+
       // TextBox/Textarea: generate fill() for non-empty values, toHaveValue for empty
       if ((vcComponent === 'TextBox' || vcComponent === 'Textarea') && vc.ariaName) {
         const textLocator = `page.getByRole('textbox', { name: '${esc(vc.ariaName)}' })`;
@@ -956,8 +996,6 @@ function generateClickCode(step, indent, method = 'click', fillPlan = {}) {
     // Number fields in formData → spinbutton fills.
     // Compare against other submits' formData to detect which values changed;
     // only fill changed spinbuttons to avoid unnecessary interactions.
-    // For the first submit, look ahead at subsequent submits to find "stable"
-    // values that didn't change — those are defaults that don't need filling.
     const numberFields = Object.entries(formData).filter(([, v]) => typeof v === 'number');
     if (numberFields.length > 0) {
       let refFormData = fillPlan._prevFormData;
@@ -973,7 +1011,7 @@ function generateClickCode(step, indent, method = 'click', fillPlan = {}) {
       }
       const changedNumbers = refFormData
         ? numberFields.filter(([k, v]) => refFormData[k] !== v)
-        : numberFields;
+        : [];  // No reference form data — skip number fills for single-submit forms
       if (changedNumbers.length > 0) {
         for (const [key, value] of changedNumbers) {
           // Convert camelCase formData key to a regex pattern matching the ARIA label.
