@@ -53,6 +53,22 @@
             </HStack>
           </Column>
         </Table>
+
+        <HStack gap="$space-4">
+          <Text>Filter by phone:</Text>
+          <Select id="phoneFilter" aria-label="Phone filter" placeholder="All users"
+            onDidChange="(val) => { filterPhone = val; applyFilter() }">
+            <Option value="" label="All users" />
+            <Option value="has-phone" label="Has phone" />
+            <Option value="no-phone" label="No phone" />
+          </Select>
+        </HStack>
+
+        <Table aria-label="Filtered users" data="{filteredUsers}" when="{filterPhone !== ''}">
+          <Column bindTo="name" />
+          <Column bindTo="email" />
+          <Column bindTo="phone" />
+        </Table>
       </VStack>
     </TabItem>
 

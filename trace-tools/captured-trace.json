@@ -1,12 +1,12 @@
 [
   {
-    "ts": 1774383462490,
-    "perfTs": 640.7999999523163,
-    "eventTs": 624.1999999880791,
+    "ts": 1774387419211,
+    "perfTs": 638.1999999880791,
+    "eventTs": 620.6000000238419,
     "kind": "interaction",
     "eventName": "click",
     "uid": "mainTabs",
-    "traceId": "i-mn523m1m-8ocwm4",
+    "traceId": "i-mn54gf2j-o15gg7",
     "componentType": "Tabs",
     "componentLabel": "Main tabs",
     "interaction": "click",
@@ -24,9 +24,9 @@
     "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"DIV\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=Settings\",\n  \"text\": \"UsersSettingsAboutSettingsShow email column:Items per page:Notes:\",\n  \"ariaRole\": \"tab\",\n  \"ariaName\": \"Settings\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774383462527,
-    "perfTs": 677.6999999880791,
-    "traceId": "i-mn523m1m-8ocwm4",
+    "ts": 1774387419253,
+    "perfTs": 680.6999999880791,
+    "traceId": "i-mn54gf2j-o15gg7",
     "kind": "focus:change",
     "component": "Tabs",
     "displayLabel": "About",
@@ -35,13 +35,13 @@
     "tabLabel": "About"
   },
   {
-    "ts": 1774383462530,
-    "perfTs": 681.3999999761581,
-    "eventTs": 676.8999999761581,
+    "ts": 1774387419257,
+    "perfTs": 684.3000000119209,
+    "eventTs": 679.9000000357628,
     "kind": "interaction",
     "eventName": "click",
     "uid": "mainTabs",
-    "traceId": "i-mn523m2q-o0tary",
+    "traceId": "i-mn54gf3t-e03n8z",
     "componentType": "Tabs",
     "componentLabel": "Main tabs",
     "interaction": "click",
@@ -59,13 +59,13 @@
     "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"DIV\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=About\",\n  \"text\": \"UsersSettingsAboutAboutXMLUI Regression Test App — exercises core components …\",\n  \"ariaRole\": \"tab\",\n  \"ariaName\": \"About\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774383462764,
-    "perfTs": 914.8999999761581,
-    "traceId": "startup-mn523luu",
+    "ts": 1774387419510,
+    "perfTs": 937.9000000357628,
+    "traceId": "startup-mn54gev5",
     "kind": "api:complete",
     "url": "/api/users",
     "method": "GET",
-    "instanceId": "ds-02jbke-mn523lvu",
+    "instanceId": "ds-vr5c25-mn54gew6",
     "result": [
       {
         "id": 1,
@@ -82,10 +82,10 @@
     ]
   },
   {
-    "ts": 1774383462765,
-    "perfTs": 916.1999999880791,
-    "traceId": "startup-mn523luu",
-    "instanceId": "ds-02jbke-mn523lvu",
+    "ts": 1774387419512,
+    "perfTs": 939.4000000357628,
+    "traceId": "startup-mn54gev5",
+    "instanceId": "ds-vr5c25-mn54gew6",
     "dataSourceUrl": "/api/users",
     "ownerUid": "users",
     "ownerFileId": "http://localhost:8000/Main.xmlui",
@@ -93,7 +93,7 @@
       "start": 137,
       "end": 183
     },
-    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-02jbke-mn523lvu\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-vr5c25-mn54gew6\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
     "kind": "state:changes",
     "eventName": "DataSource:users",
     "uid": "users",

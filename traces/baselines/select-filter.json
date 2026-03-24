@@ -1,0 +1,167 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
+        "ariaRole": "button",
+        "ariaName": "Add User",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "DIV",
+        "ariaRole": "dialog",
+        "ariaName": "Add User",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog",
+        "key": "a"
+      },
+      "fillValue": "a"
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog",
+        "key": "b"
+      },
+      "fillValue": "b@c.d"
+    },
+    {
+      "action": "keydown",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Cancel",
+        "ariaRole": "button",
+        "ariaName": "Cancel",
+        "testId": "userDialog",
+        "key": "Tab"
+      }
+    },
+    {
+      "action": "keydown",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog",
+        "key": "Enter"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog",
+        "formData": {
+          "name": "a",
+          "email": "b@c.d"
+        }
+      },
+      "await": {
+        "api": [
+          {
+            "method": "POST",
+            "endpoint": "/api/users"
+          }
+        ]
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Select",
+        "label": "Has phone",
+        "ariaRole": "option",
+        "ariaName": "Has phone"
+      },
+      "stateDiffs": [
+        {
+          "path": "filteredUsers",
+          "before": 0,
+          "after": 2,
+          "added": [
+            "Leanne Graham",
+            "Ervin Howell"
+          ]
+        }
+      ],
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 0,
+          "rowCount": 2
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Select",
+        "label": "No phone",
+        "ariaRole": "option",
+        "ariaName": "No phone"
+      },
+      "stateDiffs": [
+        {
+          "path": "filteredUsers",
+          "before": 2,
+          "after": 1,
+          "added": [
+            "a"
+          ],
+          "removed": [
+            "Leanne Graham",
+            "Ervin Howell"
+          ]
+        }
+      ],
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 2,
+          "rowCount": 1
+        }
+      ]
+    }
+  ]
+}
