@@ -29,31 +29,31 @@ cd trace-tools && npm install && npx playwright install chromium && cd ..
 
 Open the Add User modal, submit an empty form (triggers validation), fill name and email, submit successfully. Verifies form validation and POST mutation.
 
-[Video: add-user](traces/videos/add-user.webm)
+<video src="traces/videos/add-user.webm" controls></video>
 
 ### edit-user
 
 Click Edit on an existing user, modify the name in the pre-filled form, save. Verifies modal parameter passing and PUT mutation.
 
-[Video: edit-user](traces/videos/edit-user.webm)
+<video src="traces/videos/edit-user.webm" controls></video>
 
 ### delete-user-confirm
 
 Click Delete on a user, confirm in the confirmation dialog. Verifies confirmation flow and DELETE mutation with DataSource refetch.
 
-[Video: delete-user-confirm](traces/videos/delete-user-confirm.webm)
+<video src="traces/videos/delete-user-confirm.webm" controls></video>
 
 ### tab-switch
 
 Navigate between Users, Settings, and About tabs. Verifies tab switching with focus:change events.
 
-[Video: tab-switch](traces/videos/tab-switch.webm)
+<video src="traces/videos/tab-switch.webm" controls></video>
 
 ### select-filter
 
 Add a user (creates one with no phone), then use the phone filter dropdown to switch between "Has phone" and "No phone" views. Verifies Select interaction tracing and filtered table updates.
 
-[Video: select-filter](traces/videos/select-filter.webm)
+<video src="traces/videos/select-filter.webm" controls></video>
 
 ## Architecture
 
