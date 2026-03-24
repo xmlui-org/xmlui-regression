@@ -1,0 +1,56 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Table",
+        "label": "User list",
+        "componentId": "userTable",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userTable\"] >> text=Edit",
+        "ariaRole": "button",
+        "ariaName": "Edit Leanne Graham",
+        "testId": "userTable"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Edit User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Edit User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog",
+        "key": "a"
+      },
+      "fillValue": "Leanne Grahamasdfsdf"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Edit User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Cancel",
+        "ariaRole": "button",
+        "ariaName": "Cancel",
+        "testId": "userDialog"
+      }
+    }
+  ]
+}

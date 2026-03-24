@@ -173,6 +173,73 @@ Switch to Settings tab, toggle the Show email switch, decrease Items per page, t
 
 </details>
 
+### validation-roundtrip
+
+Open Add User, submit empty form (2 validation errors), fill name and submit (1 error for email), fill invalid email and submit (1 regex error), then cancel. Exercises the full validation lifecycle without a successful submit.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | button "Add User" | Opens modal |
+| 2 | click | button "Save" | Validation: 2 errors (name, email) |
+| 3 | fill | textbox "Name" | Fill name |
+| 4 | click | button "Save" | Validation: 1 error (email) |
+| 5 | fill | textbox "Email" | Fill invalid email |
+| 6 | click | button "Cancel" | Close without submit |
+
+</details>
+
+### edit-cancel
+
+Click Edit on a user, modify the name, then cancel. Verifies modal closes and no PUT mutation occurs.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | button "Edit Leanne Graham" | Opens edit modal |
+| 2 | fill | textbox "Name" | Modify name |
+| 3 | click | button "Cancel" | Close without saving |
+
+</details>
+
+### delete-cancel
+
+Click Delete on a user, cancel the confirmation dialog. Verifies no DELETE mutation occurs and user remains.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | button "Delete Leanne Graham" | Confirmation dialog → Cancel |
+
+</details>
+
 ## Architecture
 
 - `Main.xmlui` / `Main.xmlui.xs` — the app markup and code-behind

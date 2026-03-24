@@ -1,0 +1,139 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
+        "ariaRole": "button",
+        "ariaName": "Add User",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog"
+      },
+      "validationErrors": [
+        {
+          "form": "Form",
+          "errorCount": 2,
+          "errorFields": [
+            "name",
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog",
+        "key": "a"
+      },
+      "fillValue": "asdf"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog"
+      },
+      "validationErrors": [
+        {
+          "form": "Form",
+          "errorCount": 1,
+          "errorFields": [
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog",
+        "key": "a"
+      },
+      "fillValue": "abc"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "FORM",
+        "ariaRole": "dialog",
+        "ariaName": "Add User",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Cancel",
+        "ariaRole": "button",
+        "ariaName": "Cancel",
+        "testId": "userDialog"
+      }
+    }
+  ]
+}
