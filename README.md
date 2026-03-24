@@ -1,10 +1,12 @@
 # xmlui-regression
 
-**[Live app](https://xmlui-org.github.io/xmlui-regression/)** | [CI](https://github.com/xmlui-org/xmlui-regression/actions)
-
-Regression test suite for the XMLUI framework. Uses [trace-tools](https://github.com/xmlui-org/trace-tools) to capture user journeys as baselines and replay them as Playwright tests with semantic comparison.
+Regression test suite for the XMLUI framework. Relies on traces emitted by the XMLUI engine when `xsVerbose` is on, and [trace-tools](https://github.com/xmlui-org/trace-tools) to capture user journeys as baselines and replay them as Playwright tests with semantic comparison.
 
 The app is a CRUD interface backed by an in-browser mock API (MSW). It exercises core XMLUI components and patterns: forms, modals, tables, tabs, selects, confirmation dialogs, validation, and DataSource reactivity.
+
+See the live app [here](https://xmlui-org.github.io/xmlui-regression/) (and click the Inspector icon to see and interact with the traces).
+
+See the CI runs [here](https://github.com/xmlui-org/xmlui-regression/actions).
 
 ## Running tests
 
