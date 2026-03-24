@@ -1,0 +1,905 @@
+/**
+ * Distill parsed trace into essential user journey steps
+ */
+
+
+/**
+ * Summarize an API response for assertion generation.
+ * - Single-row (array length 1 or plain object): snapshot key-value pairs,
+ *   replacing date-shaped string values with '__DATE__'.
+ * - Multi-row (array length > 1): row count + key schema.
+ * - Empty/null: returns undefined (skip).
+ */
+function summarizeResult(result) {
+  if (result == null) return undefined;
+
+  const isDateLike = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}/.test(v);
+
+  const scrubDates = obj => {
+    const out = {};
+    for (const [k, v] of Object.entries(obj)) {
+      out[k] = isDateLike(v) ? '__DATE__' : v;
+    }
+    return out;
+  };
+
+  if (Array.isArray(result)) {
+    if (result.length === 0) return undefined;
+    if (result.length === 1) {
+      return { type: 'snapshot', keys: Object.keys(result[0]).sort(), values: scrubDates(result[0]) };
+    }
+    return { type: 'rowcount', count: result.length, keys: Object.keys(result[0]).sort() };
+  }
+
+  if (typeof result === 'object') {
+    return { type: 'snapshot', keys: Object.keys(result).sort(), values: scrubDates(result) };
+  }
+
+  return undefined;
+}
+
+/**
+ * Resolve API method that may be an unresolved XMLUI expression.
+ * The framework sometimes logs expressions like:
+ *   {$queryParams.new == 'true' ? 'post' : 'put'}
+ * instead of the actual HTTP method. This resolves them using
+ * URL query parameters when available, or extracts the first
+ * HTTP method from the expression as a fallback.
+ */
+function resolveMethod(method, url) {
+  if (!method || typeof method !== 'string') return method;
+
+  const clean = method.trim().toUpperCase();
+  if (/^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)$/.test(clean)) {
+    return clean;
+  }
+
+  // Ternary on $queryParams: {$queryParams.foo == 'bar' ? 'post' : 'put'}
+  const ternaryMatch = method.match(
+    /\{\$queryParams\.(\w+)\s*==\s*'([^']+)'\s*\?\s*'(\w+)'\s*:\s*'(\w+)'\s*\}/
+  );
+  if (ternaryMatch) {
+    const [, paramName, paramValue, trueMethod, falseMethod] = ternaryMatch;
+    if (url) {
+      try {
+        const urlObj = new URL(url, 'http://localhost');
+        const paramVal = urlObj.searchParams.get(paramName);
+        // Only use the URL to resolve if the param is actually present;
+        // $queryParams refers to the page URL, not the API endpoint URL.
+        if (paramVal !== null) {
+          return (paramVal === paramValue ? trueMethod : falseMethod).toUpperCase();
+        }
+      } catch (e) { /* fall through */ }
+    }
+    // Param not in API URL — try heuristic: if the ternary checks for 'new'/'true'
+    // and the URL has a resource identifier (e.g. /api/users/elvis vs /api/users),
+    // the presence of an ID suggests edit (false branch), absence suggests create (true branch).
+    if (paramName === 'new' && paramValue === 'true' && url) {
+      // Count path segments after the base resource — if there's an ID, it's an edit
+      const pathParts = url.replace(/\?.*/, '').split('/').filter(Boolean);
+      // e.g. ['api', 'users', 'elvis'] has 3 parts vs ['api', 'users'] has 2
+      if (pathParts.length > 2) {
+        return falseMethod.toUpperCase(); // edit → put
+      }
+      return trueMethod.toUpperCase(); // create → post
+    }
+    // Generic fallback: return the first method from the expression
+    return trueMethod.toUpperCase();
+  }
+
+  // Generic fallback: extract the first HTTP verb from the expression
+  const verbMatch = method.match(/\b(get|post|put|delete|patch|head|options)\b/i);
+  if (verbMatch) {
+    return verbMatch[1].toUpperCase();
+  }
+
+  return method;
+}
+
+/**
+ * Extract a display label from a DataSource item object.
+ * Tries common label field names first, then falls back to the first
+ * short string field. Returns null if no suitable label is found.
+ */
+function itemLabel(obj) {
+  if (!obj || typeof obj !== 'object') return null;
+  for (const key of ['name', 'title', 'label', 'displayName', 'username']) {
+    if (typeof obj[key] === 'string' && obj[key].length > 0) return obj[key];
+  }
+  for (const v of Object.values(obj)) {
+    if (typeof v === 'string' && v.length > 0 && v.length < 80) return v;
+  }
+  return null;
+}
+
+/**
+ * Distill raw JSON logs from window._xsLogs (captured by Playwright)
+ */
+function distillTrace(logs) {
+  // Build a global modifier-key timeline from all keydown/keyup interaction events.
+  // This is needed because Table row clicks are captured in a separate traceId from
+  // the keydown event for the modifier key (e.g. Ctrl), so we can't see the modifier
+  // inside the click's own trace group. We resolve it via perfTs proximity instead.
+  const MODIFIER_KEYS = { Control: 'Control', Meta: 'Meta', Shift: 'Shift', Alt: 'Alt' };
+  const modifierTimeline = []; // { perfTs, key, active }
+  for (const log of logs) {
+    if (log.kind !== 'interaction') continue;
+    const action = log.interaction || log.eventName;
+    if (action !== 'keydown' && action !== 'keyup') continue;
+    const key = (log.detail || {}).key;
+    if (!MODIFIER_KEYS[key]) continue;
+    modifierTimeline.push({ perfTs: log.perfTs || 0, key, active: action === 'keydown' });
+  }
+  modifierTimeline.sort((a, b) => a.perfTs - b.perfTs);
+
+  // Returns the set of modifier keys active at a given perfTs.
+  // A modifier is considered "active" if its keydown occurred within
+  // MAX_MODIFIER_HOLD_MS before perfTs and no keyup has cleared it.
+  // The time cap prevents a missing keyup from leaking the modifier
+  // into all subsequent steps indefinitely.
+  const MAX_MODIFIER_HOLD_MS = 500;
+  function getActiveModifiers(perfTs) {
+    const active = new Set();
+    const lastKeydownTs = new Map(); // key → perfTs of most recent keydown
+    for (const entry of modifierTimeline) {
+      if (entry.perfTs > perfTs) break;
+      if (entry.active) {
+        active.add(entry.key);
+        lastKeydownTs.set(entry.key, entry.perfTs);
+      } else {
+        active.delete(entry.key);
+        lastKeydownTs.delete(entry.key);
+      }
+    }
+    // Remove modifiers whose keydown was too far in the past (key was likely
+    // released but the keyup event was not captured in the trace).
+    for (const key of [...active]) {
+      if (perfTs - (lastKeydownTs.get(key) || 0) > MAX_MODIFIER_HOLD_MS) {
+        active.delete(key);
+      }
+    }
+    return [...active];
+  }
+
+  // Collect submenu:open events globally (they often have no traceId since
+  // they fire between the contextmenu and click interactions).
+  const submenuOpensByTs = logs
+    .filter(e => e.kind === 'submenu:open')
+    .map(e => ({ ts: e.perfTs || e.ts, label: e.ariaName || e.componentLabel }));
+
+  // Defense-in-depth: find the first interaction's perfTs so we can detect
+  // startup-traced events that actually belong to post-interaction activity
+  // (e.g. DataSource re-fetches incorrectly attributed to the startup trace).
+  const firstInteractionPerfTs = logs
+    .filter(e => e.kind === 'interaction')
+    .reduce((min, e) => Math.min(min, e.perfTs || e.ts || Infinity), Infinity);
+
+  // Group logs by traceId
+  const traces = new Map();
+
+  for (const log of logs) {
+    let traceId = log.traceId || 'unknown';
+    // If event has a startup traceId but occurs after the first interaction,
+    // strip the traceId so it doesn't pollute the startup group.
+    if (traceId.startsWith('startup-') &&
+        firstInteractionPerfTs < Infinity &&
+        (log.perfTs || log.ts || 0) > firstInteractionPerfTs) {
+      traceId = 'unknown';
+    }
+    if (!traces.has(traceId)) {
+      traces.set(traceId, {
+        traceId,
+        events: [],
+        firstPerfTs: log.perfTs || 0
+      });
+    }
+    traces.get(traceId).events.push(log);
+  }
+
+  // Re-home orphaned value:change events with files metadata to the nearest
+  // preceding interaction trace group. FileInput's onDidChange fires outside
+  // any XMLUI interaction context (triggered by native input change event),
+  // so these events land in the 'unknown' bucket with no traceId.
+  const unknownGroup = traces.get('unknown');
+  if (unknownGroup) {
+    const fileEvents = unknownGroup.events.filter(e =>
+      e.kind === 'value:change' && e.files && e.files.length > 0
+    );
+    for (const fe of fileEvents) {
+      const feTs = fe.perfTs || fe.ts || 0;
+      // Find the interaction trace group with the closest preceding timestamp
+      let bestTrace = null;
+      let bestTs = -Infinity;
+      for (const [tid, tg] of traces) {
+        if (tid === 'unknown') continue;
+        const hasInteraction = tg.events.some(e => e.kind === 'interaction');
+        if (hasInteraction && tg.firstPerfTs <= feTs && tg.firstPerfTs > bestTs) {
+          bestTrace = tg;
+          bestTs = tg.firstPerfTs;
+        }
+      }
+      if (bestTrace) {
+        bestTrace.events.push(fe);
+        unknownGroup.events = unknownGroup.events.filter(e => e !== fe);
+      }
+    }
+  }
+
+  // Convert to array and sort by first event time
+  const traceArray = Array.from(traces.values())
+    .sort((a, b) => a.firstPerfTs - b.firstPerfTs);
+
+  // Collect ariaName from non-interaction trace groups (value:change, focus:change,
+  // native:* events from wrapComponent that land in their own traceId). These will
+  // be propagated to the nearest preceding interaction step below.
+  const ariaNameByTs = []; // { ts, ariaName }
+  for (const trace of traceArray) {
+    const hasInteraction = trace.events.some(e => e.kind === 'interaction');
+    if (hasInteraction) continue;
+    for (const e of trace.events) {
+      if (e.ariaName && (e.kind === 'value:change' || e.kind === 'focus:change' || e.kind?.startsWith('native:'))) {
+        ariaNameByTs.push({ ts: e.perfTs || e.ts || 0, ariaName: e.ariaName });
+        break; // one per trace group is enough
+      }
+    }
+  }
+
+  // Convert each trace group to distilled step format
+  const steps = [];
+
+  for (const trace of traceArray) {
+    const step = extractStepFromJsonLogs(trace);
+    if (step) {
+      step._firstPerfTs = trace.firstPerfTs;
+      // If click/dblclick has no modifiers in its detail, infer from global timeline.
+      // Table row clicks are captured in a separate traceId from the keydown event
+      // for the modifier key (e.g. Ctrl), so we resolve via perfTs proximity.
+      if ((step.action === 'click' || step.action === 'dblclick') &&
+          !step.target?.ctrlKey && !step.target?.metaKey &&
+          !step.target?.shiftKey && !step.target?.altKey) {
+        const activeMods = getActiveModifiers(trace.firstPerfTs);
+        if (activeMods.length > 0) {
+          if (!step.target) step.target = {};
+          if (activeMods.includes('Control')) step.target.ctrlKey = true;
+          if (activeMods.includes('Meta')) step.target.metaKey = true;
+          if (activeMods.includes('Shift')) step.target.shiftKey = true;
+          if (activeMods.includes('Alt')) step.target.altKey = true;
+        }
+      }
+      steps.push(step);
+    }
+  }
+
+  // Diff consecutive DataSource array snapshots to detect items added or
+  // removed by mutating operations or navigation (folder changes).
+  const prevSnapshots = {}; // DataSource path → [labels]
+  for (const step of steps) {
+    if (step._dataSourceSnapshots) {
+      const hasMutation = step.await?.api?.some(a =>
+        ['POST', 'PUT', 'DELETE', 'PATCH'].includes(a.method)
+      );
+
+      for (const [dsPath, labels] of Object.entries(step._dataSourceSnapshots)) {
+        // Only diff snapshots for mutation steps — navigation swaps the entire
+        // DataSource (different folder), so diffs are meaningless.
+        if (prevSnapshots[dsPath] && hasMutation) {
+          const prevSet = new Set(prevSnapshots[dsPath]);
+          const currSet = new Set(labels);
+          const added = labels.filter(l => !prevSet.has(l));
+          const removed = prevSnapshots[dsPath].filter(l => !currSet.has(l));
+
+          if (added.length > 0 || removed.length > 0) {
+            if (!step.dataSourceChanges) step.dataSourceChanges = [];
+            step.dataSourceChanges.push({ source: dsPath, added, removed });
+          }
+        }
+        prevSnapshots[dsPath] = labels;
+      }
+      delete step._dataSourceSnapshots;
+    }
+  }
+
+  // Propagate submenu parent: match submenu:open events (collected globally)
+  // to the next menuitem click step. submenu:open fires between the contextmenu
+  // and the click, so we match by finding the last submenu:open before each step's
+  // timestamp that hasn't been consumed yet.
+  if (submenuOpensByTs.length > 0) {
+    let subIdx = 0;
+    for (const step of steps) {
+      // Advance submenu index to the last one before this step
+      while (subIdx < submenuOpensByTs.length - 1 &&
+             submenuOpensByTs[subIdx + 1].ts < (step._firstPerfTs || Infinity)) {
+        subIdx++;
+      }
+      // If this step is a menuitem click and there's a submenu:open before it
+      if (step.target?.ariaRole === 'menuitem' && subIdx < submenuOpensByTs.length &&
+          submenuOpensByTs[subIdx].ts < (step._firstPerfTs || Infinity)) {
+        step.submenuParent = submenuOpensByTs[subIdx].label;
+        subIdx++; // consume it
+      }
+    }
+  }
+  // Propagate ariaName: if a step has no ariaName on its target but has
+  // valueChanges with ariaName, copy it to the target. This handles the common
+  // case where the interaction event (click on <input>/<canvas>) lacks aria info
+  // but the resulting value:change from wrapComponent has it.
+  for (const step of steps) {
+    if (!step.target?.ariaName && step.valueChanges?.length > 0) {
+      const vcWithAria = step.valueChanges.find(vc => vc.ariaName);
+      if (vcWithAria) {
+        step.target.ariaName = vcWithAria.ariaName;
+      }
+    }
+  }
+
+  // Propagate ariaName from non-interaction trace groups (value:change,
+  // focus:change) to the nearest preceding interaction step that lacks one.
+  // This handles the case where wrapComponent's behavioral events land in
+  // separate traceIds from the browser interaction events.
+  if (ariaNameByTs.length > 0) {
+    let ariaIdx = 0;
+    for (let i = 0; i < steps.length; i++) {
+      const step = steps[i];
+      const stepTs = step._firstPerfTs || 0;
+      // Advance ariaIdx to the first entry after this step
+      while (ariaIdx < ariaNameByTs.length && ariaNameByTs[ariaIdx].ts <= stepTs) {
+        ariaIdx++;
+      }
+      // Look ahead: find ariaName entries between this step and the next
+      const nextStepTs = steps[i + 1]?._firstPerfTs || Infinity;
+      if (step.target && !step.target.ariaName) {
+        for (let j = ariaIdx; j < ariaNameByTs.length && ariaNameByTs[j].ts < nextStepTs; j++) {
+          step.target.ariaName = ariaNameByTs[j].ariaName;
+          break;
+        }
+      }
+    }
+  }
+
+  // Collapse consecutive textbox keydowns into fill steps.
+  // Match against raw value:change events from the original logs (not distilled steps,
+  // since value:change-only trace groups are dropped by extractStepFromJsonLogs).
+  // Uses componentLabel (component uid) for matching since ariaName can differ
+  // between the DOM accessible name and wrapComponent's aria-label cascade.
+  {
+    const rawValueChanges = logs
+      .filter(e => e.kind === 'value:change')
+      .map(e => ({ componentLabel: e.componentLabel, ariaName: e.ariaName, value: e.displayLabel, perfTs: e.perfTs || 0 }));
+
+    const collapsed = [];
+    let i = 0;
+    while (i < steps.length) {
+      const step = steps[i];
+
+      if (step.action === 'keydown' && step.target?.ariaRole === 'textbox' && step.target?.ariaName) {
+        const ariaName = step.target.ariaName;
+        const componentId = step.target.componentId;
+        const startTs = step._firstPerfTs || 0;
+
+        // Consume all consecutive keydowns on the same textbox
+        while (i < steps.length &&
+               steps[i].action === 'keydown' &&
+               steps[i].target?.ariaRole === 'textbox' &&
+               steps[i].target?.ariaName === ariaName) {
+          i++;
+        }
+        const endTs = steps[i - 1]._firstPerfTs || startTs;
+
+        // Find raw value:change events for this textbox in the time window
+        const relevantVCs = rawValueChanges.filter(vc => {
+          const idMatch = (componentId && vc.componentLabel === componentId) ||
+                          vc.ariaName === ariaName;
+          return idMatch && vc.perfTs >= startTs && vc.perfTs <= endTs + 500;
+        });
+
+        const finalValue = relevantVCs.length > 0
+          ? relevantVCs[relevantVCs.length - 1].value
+          : '';
+
+        collapsed.push({
+          action: 'fill',
+          target: { ...step.target },
+          fillValue: finalValue || '',
+          _firstPerfTs: startTs,
+        });
+      } else {
+        collapsed.push(step);
+        i++;
+      }
+    }
+    steps.length = 0;
+    steps.push(...collapsed);
+  }
+
+  // Clean up internal metadata
+  for (const step of steps) {
+    delete step._submenuOpens;
+    delete step._firstPerfTs;
+  }
+
+  // Dedupe: if we have click + click + dblclick on same target, keep only dblclick
+  const deduped = [];
+  for (let i = 0; i < steps.length; i++) {
+    const step = steps[i];
+    const next = steps[i + 1];
+    const nextNext = steps[i + 2];
+
+    // Check for click + click + dblclick pattern
+    if (step.action === 'click' && next?.action === 'click' && nextNext?.action === 'dblclick' &&
+        step.target?.testId === next.target?.testId && step.target?.testId === nextNext.target?.testId) {
+      // Skip the two clicks, keep the dblclick
+      deduped.push(nextNext);
+      i += 2; // Skip next two
+    } else {
+      deduped.push(step);
+    }
+  }
+
+  // Coalesce consecutive value changes on the same target.
+  // A slider drag via 10 ArrowRight presses produces 10 steps each with
+  // valueChanges. Keep only the last one — we assert the final value.
+  const coalesced = [];
+  for (let i = 0; i < deduped.length; i++) {
+    const step = deduped[i];
+    if (step.valueChanges?.length > 0) {
+      // Look ahead: if the next step(s) are the same action on the same
+      // target with valueChanges, skip this one in favor of the last.
+      let j = i + 1;
+      while (j < deduped.length &&
+             deduped[j].action === step.action &&
+             deduped[j].target?.ariaRole === step.target?.ariaRole &&
+             deduped[j].target?.ariaName === step.target?.ariaName &&
+             deduped[j].valueChanges?.length > 0) {
+        j++;
+      }
+      // Push only the last step in the run (j-1), with keyCount for replay
+      const lastStep = deduped[j - 1];
+      const count = j - i;
+      if (count > 1 && lastStep.action === 'keydown') {
+        lastStep.keyCount = count;
+        // Preserve the key from any step in the run (they're all the same key)
+        if (!lastStep.target?.key) {
+          for (let k = i; k < j; k++) {
+            if (deduped[k].target?.key) {
+              if (!lastStep.target) lastStep.target = {};
+              lastStep.target.key = deduped[k].target.key;
+              break;
+            }
+          }
+        }
+      }
+      coalesced.push(lastStep);
+      i = j - 1; // advance past the run
+    } else {
+      coalesced.push(step);
+    }
+  }
+
+  return { steps: coalesced };
+}
+
+function extractStepFromJsonLogs(trace) {
+  const events = trace.events;
+
+  // Find interaction event
+  const interaction = events.find(e => e.kind === 'interaction');
+
+  // Handle startup (no interaction, starts with startup- traceId)
+  if (!interaction && trace.traceId?.startsWith('startup-')) {
+    const rawApis = events
+      .filter(e => e.kind === 'api:complete' && e.method)
+      .map(e => {
+        const entry = { method: resolveMethod(e.method, e.url || e.endpoint), endpoint: e.url || e.endpoint };
+        const summary = summarizeResult(e.result);
+        if (summary) entry.apiResult = summary;
+        return entry;
+      });
+    // Deduplicate by method + endpoint base path
+    const seen = new Set();
+    const apiCalls = [];
+    for (const api of rawApis) {
+      const key = `${api.method} ${(api.endpoint || '').split('?')[0]}`;
+      if (!seen.has(key)) { seen.add(key); apiCalls.push(api); }
+    }
+
+    // Capture app:trace events from startup
+    const startupAppTraces = events.filter(e => e.kind === 'app:trace' && e.data);
+    const startupStep = {
+      action: 'startup',
+      await: { api: apiCalls }
+    };
+    if (startupAppTraces.length > 0) {
+      const byLabel = {};
+      for (const e of startupAppTraces) {
+        const label = e.label || 'unknown';
+        if (!byLabel[label]) byLabel[label] = [];
+        byLabel[label].push(e.data);
+      }
+      startupStep.appTraces = byLabel;
+    }
+    return startupStep;
+  }
+
+  if (!interaction) {
+    // Toast-only trace groups (triggered by message handlers, not direct clicks)
+    const toastEvents = events.filter(e => e.kind === 'toast');
+    if (toastEvents.length > 0) {
+      return {
+        action: 'toast',
+        toasts: toastEvents.map(e => ({ type: e.toastType || 'default', message: e.message }))
+      };
+    }
+    return null; // Skip non-interaction traces (message handlers, etc.)
+  }
+
+  // Skip inspector UI interactions — not part of user journey
+  if (interaction.componentLabel === 'XMLUI Inspector' ||
+      interaction.componentType === 'XSInspector' ||
+      (interaction.detail?.text || '').includes('XMLUI Inspector')) {
+    return null;
+  }
+
+  const target = {
+    component: interaction.componentType || interaction.componentLabel,
+    label: null
+  };
+
+  // Capture component id for cross-event matching (e.g. keydown → value:change)
+  const componentId = interaction.uid || interaction.detail?.componentId;
+  if (componentId) {
+    target.componentId = componentId;
+  }
+
+  // Capture targetTag for better selector generation
+  if (interaction.detail?.targetTag) {
+    target.targetTag = interaction.detail.targetTag;
+  }
+
+  // Canvas clicks: extract coordinates from native:click events for positional replay.
+  // Canvas-rendered components (ECharts, etc.) can't be targeted by DOM selectors —
+  // Playwright replays them via page.locator('canvas').click({ position: { x, y } }).
+  if (target.targetTag === 'canvas' || target.targetTag === 'CANVAS') {
+    const nativeClick = events.find(e =>
+      e.kind?.startsWith('native:') && typeof e.offsetX === 'number'
+    );
+    if (nativeClick) {
+      target.canvasX = Math.round(nativeClick.offsetX);
+      target.canvasY = Math.round(nativeClick.offsetY);
+      // Preserve aria-label for scoping when multiple canvases exist on the page
+      if (nativeClick.ariaName) {
+        target.ariaName = nativeClick.ariaName;
+      }
+      // Preserve the display label for the step summary
+      if (nativeClick.displayLabel) {
+        target.label = nativeClick.displayLabel;
+      }
+    }
+  }
+
+  // Capture selectorPath if available (Playwright-ready selector)
+  if (interaction.detail?.selectorPath) {
+    target.selectorPath = interaction.detail.selectorPath;
+  }
+
+  // Capture keyboard modifiers for multi-select clicks (Ctrl+Click, Shift+Click, Option/Alt+Click)
+  if (interaction.detail?.ctrlKey) target.ctrlKey = true;
+  if (interaction.detail?.shiftKey) target.shiftKey = true;
+  if (interaction.detail?.metaKey) target.metaKey = true;
+  if (interaction.detail?.altKey) target.altKey = true;
+
+  // Capture ARIA role and accessible name for Playwright getByRole selectors
+  if (interaction.detail?.ariaRole) {
+    target.ariaRole = interaction.detail.ariaRole;
+  }
+  if (interaction.detail?.ariaName) {
+    target.ariaName = interaction.detail.ariaName;
+  }
+
+  // Fallback: if the interaction didn't carry an ariaName (e.g., click on inner
+  // <input> or <canvas>), pull it from behavioral events (value:change,
+  // focus:change, native:*) in the same trace group that have ariaName set
+  // by the wrapComponent aria-label cascade.
+  if (!target.ariaName) {
+    const behavioral = events.find(e =>
+      (e.kind === 'value:change' || e.kind === 'focus:change' || e.kind?.startsWith('native:')) &&
+      e.ariaName
+    );
+    if (behavioral) {
+      target.ariaName = behavioral.ariaName;
+    }
+  }
+
+  // Capture testId (uid) as fallback selector when ARIA isn't available
+  if (interaction.uid) {
+    target.testId = interaction.uid;
+  }
+
+  // Extract label from interaction detail
+  // But skip overly long labels (modal content) in favor of shorter text
+  if (interaction.detail?.text && !target.ariaName) {
+    const text = interaction.detail.text;
+    if (text.length < 50) {
+      target.label = text;
+    }
+  }
+
+  // Look at handler args
+  const handlerStart = events.find(e => e.kind === 'handler:start' && (e.args || e.eventArgs));
+  if (handlerStart) {
+    const args = handlerStart.eventArgs?.[0] ||
+                 (Array.isArray(handlerStart.args) ? handlerStart.args[0] : handlerStart.args);
+    if (args?.displayName) {
+      target.label = args.displayName;
+      target.selector = { role: 'treeitem', name: args.displayName };
+    }
+    // Capture form data for form submit handlers
+    if (handlerStart.eventName === 'submit' && args) {
+      target.formData = args;
+    }
+  }
+
+  // Fallback: if no submit handler emitted formData, check for a mutating API
+  // call with a body (the form data is in the request body).
+  if (!target.formData) {
+    const mutatingApi = events.find(e =>
+      e.kind === 'api:start' && e.body && typeof e.body === 'object' &&
+      ['POST', 'PUT', 'PATCH'].includes(resolveMethod(e.method, e.url)?.toUpperCase())
+    );
+    if (mutatingApi?.body) {
+      target.formData = mutatingApi.body;
+    }
+  }
+
+  // Look at state changes for selection
+  const stateChange = events.find(e => e.kind === 'state:changes' && e.diffJson);
+  if (stateChange?.diffJson) {
+    for (const diff of stateChange.diffJson) {
+      if (diff.path?.includes('selectedIds') && diff.after) {
+        const selected = Array.isArray(diff.after) ? diff.after[0] : diff.after;
+        if (selected && typeof selected === 'string') {
+          const name = selected.split('/').pop();
+          if (!target.label) {
+            target.label = name;
+          }
+          target.selectedPath = selected;
+        }
+      }
+    }
+  }
+
+  // For keydown events: preserve the key
+  if (interaction.interaction === 'keydown' || interaction.eventName === 'keydown') {
+    if (interaction.detail?.key) {
+      target.key = interaction.detail.key;
+    }
+  }
+
+  // Use interaction label if still not found
+  if (!target.label && interaction.componentLabel) {
+    const label = interaction.componentLabel;
+    const isGeneric = /^[A-Z][a-z]+[A-Z]|^(HStack|VStack|Tree|Stack|Box|Link|Text)$/.test(label);
+    // Also skip raw HTML element names used as labels (svg, input, div, etc.)
+    const isHtmlTag = /^(svg|path|input|textarea|div|span|button|a|img|label|select|option|ul|li|ol|tr|td|th|table|form|section|header|footer|nav|main|aside|article)$/i.test(label);
+    if (!isGeneric && !isHtmlTag) {
+      target.label = label;
+    }
+  }
+
+  // Extract await conditions
+  const awaitConditions = {};
+
+  const rawApiCalls = events
+    .filter(e => (e.kind === 'api:complete' || e.kind === 'api:start') && e.method)
+    .map(e => {
+      const entry = { method: resolveMethod(e.method, e.url || e.endpoint), endpoint: e.url || e.endpoint, status: e.status };
+      if (e.kind === 'api:complete') {
+        const summary = summarizeResult(e.result);
+        if (summary) entry.apiResult = summary;
+      }
+      return entry;
+    });
+  // Deduplicate by method + endpoint (base path without query)
+  const apiSeen = new Set();
+  const apiCalls = [];
+  for (const api of rawApiCalls) {
+    const key = `${api.method} ${(api.endpoint || '').split('?')[0]}`;
+    if (!apiSeen.has(key)) {
+      apiSeen.add(key);
+      apiCalls.push(api);
+    }
+  }
+  if (apiCalls.length > 0) {
+    awaitConditions.api = apiCalls;
+  }
+
+  const navigate = events.find(e => e.kind === 'navigate');
+  if (navigate) {
+    awaitConditions.navigate = { from: navigate.from, to: navigate.to };
+  }
+
+  const step = {
+    action: interaction.interaction || interaction.eventName,
+    target,
+    await: Object.keys(awaitConditions).length > 0 ? awaitConditions : undefined
+  };
+
+  // Extract modal (confirmation dialog) events from the same trace group
+  const modals = extractModals(events);
+  if (modals.length > 0) {
+    step.modals = modals;
+  }
+
+  // Extract toast notifications from the same trace group
+  const toasts = events
+    .filter(e => e.kind === 'toast')
+    .map(e => ({ type: e.toastType || 'default', message: e.message }));
+  if (toasts.length > 0) {
+    step.toasts = toasts;
+  }
+
+  // Capture value:change events — emitted by wrapComponent for form controls.
+  // Keep only the last value per component (coalesces rapid changes like slider drag).
+  const valueChanges = events.filter(e => e.kind === 'value:change');
+  if (valueChanges.length > 0) {
+    const byComponent = new Map();
+    for (const vc of valueChanges) {
+      const entry = {
+        component: vc.component,
+        value: vc.displayLabel != null ? String(vc.displayLabel) : undefined,
+      };
+      if (vc.ariaName) entry.ariaName = vc.ariaName;
+      if (vc.componentLabel) entry.componentLabel = vc.componentLabel;
+      if (vc.files) entry.files = vc.files;
+      byComponent.set(vc.component, entry);
+    }
+    step.valueChanges = Array.from(byComponent.values());
+  }
+
+  // Capture app:trace events — user-defined trace points emitted via pushXsLog.
+  // Group by label, record the data sequence for transition-shape comparison.
+  const appTraces = events.filter(e => e.kind === 'app:trace' && e.data);
+  if (appTraces.length > 0) {
+    const byLabel = {};
+    for (const e of appTraces) {
+      const label = e.label || 'unknown';
+      if (!byLabel[label]) byLabel[label] = [];
+      byLabel[label].push(e.data);
+    }
+    step.appTraces = byLabel;
+  }
+
+  // Capture submenu:open events — these fire during the contextmenu trace
+  // when the user hovers over a SubMenuItem. Post-processing will propagate
+  // the submenu parent to the next step (the actual menuitem click).
+  const submenuOpens = events
+    .filter(e => e.kind === 'submenu:open')
+    .map(e => e.ariaName || e.componentLabel);
+  if (submenuOpens.length > 0) {
+    step._submenuOpens = submenuOpens;
+  }
+
+  // Capture DataSource array snapshots for cross-step diffing.
+  // The caller (distillTrace) will diff consecutive snapshots and attach
+  // dataSourceChanges to steps with mutating API calls.
+  const dsArrayChanges = events
+    .filter(e => e.kind === 'state:changes' && e.diffJson)
+    .flatMap(e => e.diffJson)
+    .filter(d => d.path && d.path.startsWith('DataSource:') && Array.isArray(d.after));
+  if (dsArrayChanges.length > 0) {
+    if (!step._dataSourceSnapshots) step._dataSourceSnapshots = {};
+    for (const d of dsArrayChanges) {
+      step._dataSourceSnapshots[d.path] = d.after.map(itemLabel).filter(Boolean);
+    }
+  }
+
+  // Capture state diffs for .xs globals and other non-DataSource state changes.
+  // These are the mutations that regression tests should assert on.
+  const stateDiffs = events
+    .filter(e => e.kind === 'state:changes' && e.diffJson)
+    .flatMap(e => e.diffJson)
+    .filter(d => d.path && !d.path.startsWith('DataSource:') && Array.isArray(d.after));
+  if (stateDiffs.length > 0) {
+    step.stateDiffs = stateDiffs.map(d => {
+      const diff = { path: d.path, before: (d.before || []).length, after: d.after.length };
+      const prevLabels = (d.before || []).map(itemLabel).filter(Boolean);
+      const afterLabels = d.after.map(itemLabel).filter(Boolean);
+      const added = afterLabels.filter(l => !prevLabels.includes(l));
+      const removed = prevLabels.filter(l => !afterLabels.includes(l));
+      if (added.length > 0) diff.added = added;
+      if (removed.length > 0) diff.removed = removed;
+      return diff;
+    });
+  }
+
+  // Capture validation:error events — form validation failures
+  const validationErrors = events.filter(e => e.kind === 'validation:error');
+  if (validationErrors.length > 0) {
+    step.validationErrors = validationErrors.map(e => ({
+      form: e.componentLabel || 'Form',
+      errorCount: (e.errorFields || []).length,
+      errorFields: e.errorFields || [],
+    }));
+  }
+
+  // Capture data:bind events — data/view correspondence
+  const dataBinds = events.filter(e => e.kind === 'data:bind');
+  if (dataBinds.length > 0) {
+    step.dataBinds = dataBinds.map(e => ({
+      component: e.componentLabel || e.component,
+      prevCount: e.prevCount,
+      rowCount: e.rowCount,
+    }));
+  }
+
+  return step;
+}
+
+/**
+ * Extract confirmation dialog interactions from a trace group's events.
+ * A modal sequence is: modal:show → modal:confirm or modal:cancel.
+ * There can be multiple modal sequences in one trace (e.g., delete confirmation
+ * followed by "folder not empty" confirmation).
+ */
+function extractModals(events) {
+  const modals = [];
+  const modalShows = events.filter(e => e.kind === 'modal:show');
+
+  for (let i = 0; i < modalShows.length; i++) {
+    const show = modalShows[i];
+    const showTs = show.perfTs || show.ts || 0;
+
+    // Find the next modal:confirm or modal:cancel after this show
+    const nextShowTs = modalShows[i + 1]?.perfTs || modalShows[i + 1]?.ts || Infinity;
+    const resolution = events.find(e =>
+      (e.kind === 'modal:confirm' || e.kind === 'modal:cancel') &&
+      (e.perfTs || e.ts || 0) > showTs &&
+      (e.perfTs || e.ts || 0) <= nextShowTs
+    );
+
+    const modal = {
+      title: show.title,
+      buttons: show.buttons, // available with enhanced engine instrumentation
+    };
+
+    if (resolution?.kind === 'modal:confirm') {
+      modal.action = 'confirm';
+      modal.value = resolution.value;
+      modal.buttonLabel = resolution.buttonLabel;
+      // Fallback: look up label from buttons array if buttonLabel not available
+      if (!modal.buttonLabel && modal.buttons && modal.value !== undefined) {
+        const btn = modal.buttons.find(b => b.value === modal.value);
+        if (btn) modal.buttonLabel = btn.label;
+      }
+    } else if (resolution?.kind === 'modal:cancel') {
+      modal.action = 'cancel';
+    } else {
+      modal.action = 'unknown'; // show without resolution (shouldn't happen)
+    }
+
+    modals.push(modal);
+  }
+
+  return modals;
+}
+
+// Export
+if (typeof module !== 'undefined') {
+  module.exports = { distillTrace, resolveMethod };
+}
+
+// CLI usage
+if (require.main === module) {
+  const fs = require('fs');
+  const input = fs.readFileSync(process.argv[2] || '/dev/stdin', 'utf8');
+  const outputFile = process.argv[3];
+
+  const logs = JSON.parse(input);
+  const distilled = distillTrace(logs);
+
+  const output = JSON.stringify(distilled, null, 2);
+  if (outputFile) {
+    fs.writeFileSync(outputFile, output);
+  } else {
+    console.log(output);
+  }
+}

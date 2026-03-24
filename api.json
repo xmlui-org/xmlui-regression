@@ -1,0 +1,34 @@
+{
+  "apiUrl": "/api",
+  "initialize": "$state.users = [ { id: 1, name: 'Leanne Graham', email: 'Sincere@april.biz', phone: '1-770-736-8031' }, { id: 2, name: 'Ervin Howell', email: 'Shanna@melissa.tv', phone: '010-692-6593' } ]",
+  "operations": {
+    "get-users": {
+      "url": "/users",
+      "method": "get",
+      "handler": "$state.users"
+    },
+    "get-user": {
+      "url": "/users/:id",
+      "method": "get",
+      "pathParamTypes": { "id": "integer" },
+      "handler": "return $state.users.find(u => u.id === $pathParams.id)"
+    },
+    "create-user": {
+      "url": "/users",
+      "method": "post",
+      "handler": "const newId = $state.users.length > 0 ? Math.max(...$state.users.map(u => u.id)) + 1 : 1; $state.users.push({ id: newId, name: $requestBody.name, email: $requestBody.email, phone: '' })"
+    },
+    "update-user": {
+      "url": "/users/:id",
+      "method": "put",
+      "pathParamTypes": { "id": "integer" },
+      "handler": "const u = $state.users.find(u => u.id === $pathParams.id); if (u) { u.name = $requestBody.name; u.email = $requestBody.email; }"
+    },
+    "delete-user": {
+      "url": "/users/:id",
+      "method": "delete",
+      "pathParamTypes": { "id": "integer" },
+      "handler": "$state.users = $state.users.filter(u => u.id !== $pathParams.id)"
+    }
+  }
+}

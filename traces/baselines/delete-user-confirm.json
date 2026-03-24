@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Table",
+        "label": "User list",
+        "componentId": "userTable",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userTable\"] >> text=Delete",
+        "ariaRole": "button",
+        "ariaName": "Delete Leanne Graham",
+        "testId": "userTable"
+      },
+      "await": {
+        "api": [
+          {
+            "method": "DELETE",
+            "endpoint": "/api/users/1"
+          }
+        ]
+      },
+      "modals": [
+        {
+          "title": "Confirm Operation",
+          "buttons": [
+            {
+              "label": "Yes",
+              "value": true
+            }
+          ],
+          "action": "confirm",
+          "value": true,
+          "buttonLabel": "Yes"
+        }
+      ]
+    }
+  ]
+}

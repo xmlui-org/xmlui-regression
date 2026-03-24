@@ -1,0 +1,149 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
+        "ariaRole": "button",
+        "ariaName": "Add User",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog"
+      },
+      "validationErrors": [
+        {
+          "form": "Form",
+          "errorCount": 2,
+          "errorFields": [
+            "name",
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "shiftKey": true,
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog",
+        "key": "Shift"
+      },
+      "fillValue": "Jon"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog"
+      },
+      "validationErrors": [
+        {
+          "form": "Form",
+          "errorCount": 1,
+          "errorFields": [
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog",
+        "key": "j"
+      },
+      "fillValue": "jon@foo.com"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog",
+        "formData": {
+          "name": "Jon",
+          "email": "jon@foo.com"
+        }
+      },
+      "await": {
+        "api": [
+          {
+            "method": "POST",
+            "endpoint": "/api/users"
+          }
+        ]
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Regression",
+        "label": "Regression",
+        "targetTag": "DIV",
+        "ariaRole": "banner"
+      }
+    }
+  ]
+}

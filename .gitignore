@@ -1,0 +1,8 @@
+node_modules/
+traces/runs/
+traces/videos/
+trace-tools/node_modules/
+trace-tools/.auth-state.json
+trace-tools/generated-*.spec.ts
+trace-tools/capture-scripts/
+trace-tools/test-results/
