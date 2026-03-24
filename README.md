@@ -39,7 +39,8 @@ Open the Add User modal, submit an empty form (triggers validation), fill name a
 <details>
 <summary>Video</summary>
 
-[add-user.webm](https://github.com/user-attachments/assets/9ffbc1fa-4a1a-47c4-9210-cf701ad30e7a)
+[add-user.webm](https://github.com/user-attachments/assets/cda07f19-9021-4966-9953-aa6eafb954c2)
+
 
 
 </details>
@@ -64,8 +65,7 @@ Click Edit on an existing user, modify the name in the pre-filled form, save. Ve
 <details>
 <summary>Video</summary>
 
-[edit-user.webm](https://github.com/user-attachments/assets/69068cd7-ea3f-4004-80f6-f04b32df3aab)
-
+[edit-user.webm](https://github.com/user-attachments/assets/0550bc3b-312d-4b7c-be56-138405175ee1)
 
 </details>
 
@@ -87,7 +87,8 @@ Click Delete on a user, confirm in the confirmation dialog. Verifies confirmatio
 <details>
 <summary>Video</summary>
 
-[delete-user-confirm.webm](https://github.com/user-attachments/assets/bc33b4c6-3913-459f-8f28-b788e6367e98)
+[delete-user-confirm.webm](https://github.com/user-attachments/assets/1ae35699-a65a-44b4-b963-b7ca3d5bbe66)
+
 
 
 </details>
@@ -108,7 +109,8 @@ Navigate between Users, Settings, and About tabs. Verifies tab switching with fo
 <details>
 <summary>Video</summary>
 
-[tab-switch.webm](https://github.com/user-attachments/assets/67149c53-88ac-41c2-9f8e-33742fc1fee8)
+[tab-switch.webm](https://github.com/user-attachments/assets/efa65198-20f8-410b-bd01-6ad4bc0d9827)
+
 
 
 </details>
