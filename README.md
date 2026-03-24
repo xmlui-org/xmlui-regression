@@ -180,7 +180,8 @@ Open Add User, submit empty form (2 validation errors), fill name and submit (1 
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[validation-roundtrip.webm](https://github.com/user-attachments/assets/48f14d0d-fae3-4d1e-897f-03b160ee353c)
+
 
 </details>
 
@@ -205,7 +206,8 @@ Click Edit on a user, modify the name, then cancel. Verifies modal closes and no
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[edit-cancel.webm](https://github.com/user-attachments/assets/b1b96f5e-e554-43ae-ae2e-a2f0cbee55f1)
+
 
 </details>
 
@@ -227,7 +229,8 @@ Click Delete on a user, cancel the confirmation dialog. Verifies no DELETE mutat
 <details>
 <summary>Video</summary>
 
-_Upload video here_
+[delete-cancel.webm](https://github.com/user-attachments/assets/08ff1f36-043f-48f0-aafc-fe106f5cd172)
+
 
 </details>
 
