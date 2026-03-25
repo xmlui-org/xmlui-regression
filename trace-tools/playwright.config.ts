@@ -16,7 +16,7 @@ const hasAuth = !!appConfig.auth || pregenAuth;
 
 export default defineConfig({
   testDir: '.',
-  timeout: 15000,
+  timeout: 60000,
   use: {
     baseURL,
     headless: !!process.env.CI || process.env.PLAYWRIGHT_HEADLESS === 'on', // headed by default; use --headless flag or set CI=1

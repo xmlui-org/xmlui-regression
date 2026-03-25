@@ -1,0 +1,16 @@
+<Component name="SearchTab">
+  <DataSource id="countries" url="/api/countries" queryParams="{{ q: searchTerm }}" />
+
+  <VStack padding="$space-4" gap="$space-4">
+    <H1>Search</H1>
+    <TextBox
+      placeholder="Search countries..."
+      aria-label="{'Search: ' + (countries.value || []).length + ' results'}"
+      initialValue=""
+      onDidChange="(val) => { searchTerm = val }" />
+    <Text aria-label="Result count">{(countries.value || []).length} countries</Text>
+    <Table data="{countries}" height="300px">
+      <Column bindTo="name" />
+    </Table>
+  </VStack>
+</Component>

@@ -1,4 +1,5 @@
 var editingUserId = null;
+var searchTerm = "";
 var filterPhone = "";
 var filteredUsers = [];
 var showEmail = true;

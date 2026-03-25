@@ -1,0 +1,50 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Search",
+        "ariaRole": "tab",
+        "ariaName": "Search",
+        "testId": "mainTabs"
+      },
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 0,
+          "rowCount": 147
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Search: 147 results",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "fill",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Search: 147 results",
+        "testId": "mainTabs",
+        "key": "c"
+      },
+      "fillValue": "cana"
+    }
+  ]
+}
