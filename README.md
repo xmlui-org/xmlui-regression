@@ -245,11 +245,33 @@ Click Delete on a user, cancel the confirmation dialog. Verifies no DELETE mutat
 
 </details>
 
+### chart-interact
+
+Switch to Charts tab, click a bar data point, toggle a legend item. Exercises ECharts extension with native canvas event tracing — clicks and legend changes on canvas-rendered charts produce structured trace events with meaningful labels like `Commits → Wed = 150`.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | tab "Charts" | Switch to Charts tab |
+| 2 | click | canvas [150, 161] | native:click Commits → Wed = 150 |
+| 3 | click | canvas [71, 21] | native:legendselectchanged Commits: hide |
+
+</details>
+
 ## Architecture
 
 - `Main.xmlui` / `Main.xmlui.xs` — the app markup and code-behind
-- `components/` — user-defined components (UsersTab, SettingsTab, AboutTab)
+- `components/` — user-defined components (UsersTab, SettingsTab, AboutTab, ChartsTab)
 - `config.json` — app config including apiInterceptor (MSW mock API) and xsVerbose
 - `traces/baselines/` — distilled journey baselines (source of truth)
 - `trace-tools/` — shared test infrastructure
-- `xmlui/` — standalone engine build + inspector
+- `xmlui/` — standalone engine build, inspector, and extensions (xmlui-echart.js)
