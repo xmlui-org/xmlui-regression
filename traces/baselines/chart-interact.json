@@ -1,0 +1,41 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Charts",
+        "ariaRole": "tab",
+        "ariaName": "Charts",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "CANVAS",
+        "ariaRole": "tabpanel",
+        "ariaName": "Charts",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "CANVAS",
+        "ariaRole": "tabpanel",
+        "ariaName": "Charts",
+        "testId": "mainTabs"
+      }
+    }
+  ]
+}

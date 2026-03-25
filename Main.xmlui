@@ -9,6 +9,7 @@
   <Tabs id="mainTabs" aria-label="Main tabs">
     <TabItem label="Users"><UsersTab /></TabItem>
     <TabItem label="Settings"><SettingsTab /></TabItem>
+    <TabItem label="Charts"><ChartsTab /></TabItem>
     <TabItem label="About"><AboutTab /></TabItem>
   </Tabs>
 

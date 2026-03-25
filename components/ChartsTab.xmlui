@@ -1,0 +1,50 @@
+<Component name="ChartsTab">
+  <VStack padding="$space-4" gap="$space-4">
+    <H1>Charts</H1>
+    <Text>Click data points and toggle legend items to exercise native canvas event tracing.</Text>
+
+    <Card>
+      <H2>Bar Chart</H2>
+      <EChart
+        aria-label="User activity bar chart"
+        height="350px"
+        option="{
+          {
+            xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
+            yAxis: { type: 'value' },
+            series: [
+              { type: 'bar', name: 'Commits', data: [120, 200, 150, 80, 70] },
+              { type: 'bar', name: 'Reviews', data: [60, 80, 90, 40, 30] }
+            ],
+            tooltip: { trigger: 'axis' },
+            legend: {}
+          }
+        }" />
+    </Card>
+
+    <Card>
+      <H2>Pie Chart</H2>
+      <EChart
+        aria-label="Language distribution pie chart"
+        height="350px"
+        option="{
+          {
+            series: [{
+              type: 'pie',
+              radius: ['40%', '70%'],
+              data: [
+                { name: 'TypeScript', value: 45 },
+                { name: 'Python', value: 25 },
+                { name: 'Go', value: 15 },
+                { name: 'Rust', value: 10 },
+                { name: 'Other', value: 5 }
+              ],
+              label: { show: true, formatter: '{b}: {d}%' }
+            }],
+            tooltip: { trigger: 'item' },
+            legend: { bottom: 0 }
+          }
+        }" />
+    </Card>
+  </VStack>
+</Component>
