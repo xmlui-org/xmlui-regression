@@ -1,0 +1,22 @@
+<Component name="LondonTubeTab">
+  <VStack padding="$space-4" gap="$space-4">
+    <H1>London Tube</H1>
+
+    <Select id="lines" aria-label="Tube line" initialValue="bakerloo" dropdownHeight="300px">
+      <Items data="https://api.tfl.gov.uk/line/mode/tube/status">
+        <Option value="{$item.id}" label="{$item.name}" />
+      </Items>
+    </Select>
+
+    <DataSource
+      id="stations"
+      url="https://api.tfl.gov.uk/Line/{lines.value}/Route/Sequence/inbound"
+      when="{!!lines.value}"
+      resultSelector="stations"/>
+
+    <Table data="{stations}" height="200px">
+      <Column bindTo="name" />
+      <Column bindTo="modes" />
+    </Table>
+  </VStack>
+</Component>

@@ -267,10 +267,32 @@ _Upload video here_
 
 </details>
 
+### london-tube
+
+Switch to LondonTube tab, select Hammersmith & City line, then Piccadilly line. The only journey hitting a real external API (TfL). Exercises the full DataSource → Select → API → Table reactive chain: selecting a line triggers a DataSource refetch with the new line id in the URL, and the Table rebinds with station data. Asserts that API calls happen for each line, Table row count goes `up` on each switch, and `selectAriaLabel` threads through correctly.
+
+<details>
+<summary>Video</summary>
+
+_Upload video here_
+
+</details>
+
+<details>
+<summary>Distilled steps (from raw trace)</summary>
+
+| # | Action | Target | Details |
+|---|--------|--------|---------|
+| 1 | click | tab "LondonTube" | Switch to LondonTube tab |
+| 2 | click | option "Hammersmith & City" (Select "Tube line") | GET /Line/hammersmith-city, Table: up |
+| 3 | click | option "Piccadilly" (Select "Tube line") | GET /Line/piccadilly, Table: up |
+
+</details>
+
 ## Architecture
 
 - `Main.xmlui` / `Main.xmlui.xs` — the app markup and code-behind
-- `components/` — user-defined components (UsersTab, SettingsTab, AboutTab, ChartsTab)
+- `components/` — user-defined components (UsersTab, SettingsTab, AboutTab, ChartsTab, LondonTubeTab)
 - `config.json` — app config including apiInterceptor (MSW mock API) and xsVerbose
 - `traces/baselines/` — distilled journey baselines (source of truth)
 - `trace-tools/` — shared test infrastructure

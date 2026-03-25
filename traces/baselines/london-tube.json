@@ -1,0 +1,83 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=LondonTube",
+        "ariaRole": "tab",
+        "ariaName": "LondonTube",
+        "testId": "mainTabs"
+      },
+      "await": {
+        "api": [
+          {
+            "method": "GET",
+            "endpoint": "https://api.tfl.gov.uk/line/mode/tube/status"
+          }
+        ]
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Select",
+        "label": "Hammersmith & City",
+        "ariaRole": "option",
+        "ariaName": "Hammersmith & City",
+        "selectAriaLabel": "Tube line"
+      },
+      "await": {
+        "api": [
+          {
+            "method": "GET",
+            "endpoint": "https://api.tfl.gov.uk/Line/hammersmith-city/Route/Sequence/inbound"
+          },
+          {
+            "method": "GET",
+            "endpoint": "https://api.tfl.gov.uk/line/mode/tube/status"
+          }
+        ]
+      },
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 25,
+          "rowCount": 29
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Select",
+        "label": "Piccadilly",
+        "ariaRole": "option",
+        "ariaName": "Piccadilly",
+        "selectAriaLabel": "Tube line"
+      },
+      "await": {
+        "api": [
+          {
+            "method": "GET",
+            "endpoint": "https://api.tfl.gov.uk/Line/piccadilly/Route/Sequence/inbound"
+          },
+          {
+            "method": "GET",
+            "endpoint": "https://api.tfl.gov.uk/line/mode/tube/status"
+          }
+        ]
+      },
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 29,
+          "rowCount": 53
+        }
+      ]
+    }
+  ]
+}
