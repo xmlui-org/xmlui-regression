@@ -422,10 +422,12 @@ function distillTrace(logs) {
   // Coalesce consecutive value changes on the same target.
   // A slider drag via 10 ArrowRight presses produces 10 steps each with
   // valueChanges. Keep only the last one — we assert the final value.
+  // Only coalesce keydown actions — button clicks are distinct semantic actions
+  // (e.g. repeated form submits with different validation outcomes).
   const coalesced = [];
   for (let i = 0; i < deduped.length; i++) {
     const step = deduped[i];
-    if (step.valueChanges?.length > 0) {
+    if (step.valueChanges?.length > 0 && step.action === 'keydown') {
       // Look ahead: if the next step(s) are the same action on the same
       // target with valueChanges, skip this one in favor of the last.
       let j = i + 1;

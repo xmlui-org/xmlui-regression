@@ -7,22 +7,22 @@ test('tab-switch', async ({ page }) => {
   try {
     await page.goto('./');
 
-    // Wait for app to load
-    await page.waitForResponse(r => r.url().includes('jsonplaceholder.typicode.com/users'));
+    // Wait for app to load - Users page is the default
+    await page.waitForResponse(r => r.url().includes('/api/users'));
 
-    // Should start on Users tab
+    // Should start on Users page
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible();
 
-    // Switch to Settings tab
-    await page.getByRole('tab', { name: 'Settings' }).click();
+    // Navigate to Settings via NavLink
+    await page.getByRole('link', { name: 'Settings' }).click();
     await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
 
-    // Switch to About tab
-    await page.getByRole('tab', { name: 'About' }).click();
+    // Navigate to About via NavLink
+    await page.getByRole('link', { name: 'About' }).click();
     await expect(page.getByText('XMLUI Regression Test App')).toBeVisible();
 
-    // Switch back to Users tab
-    await page.getByRole('tab', { name: 'Users' }).click();
+    // Navigate back to Users via NavLink
+    await page.getByRole('link', { name: 'Users' }).click();
     await expect(page.getByRole('heading', { name: 'Users' })).toBeVisible();
   } finally {
     await captureTrace(page);

@@ -3,14 +3,10 @@
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
+        "component": "NavPanel",
         "targetTag": "DIV",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=LondonTube",
-        "ariaRole": "tab",
-        "ariaName": "LondonTube",
-        "testId": "mainTabs"
+        "ariaRole": "link",
+        "ariaName": "LondonTube"
       },
       "await": {
         "api": [

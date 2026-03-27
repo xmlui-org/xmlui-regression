@@ -3,23 +3,23 @@
     {
       "action": "click",
       "target": {
-        "component": "div",
-        "label": null,
-        "targetTag": "DIV",
+        "component": "Add User",
+        "label": "Add User",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
         "ariaName": "Add User"
       }
     },
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
-        "targetTag": "BUTTON",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
-        "ariaRole": "button",
-        "ariaName": "Add User",
-        "testId": "mainTabs"
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
+        "testId": "userDialog"
       }
     },
     {
@@ -64,12 +64,47 @@
         "label": "Add User",
         "componentId": "userDialog",
         "targetTag": "INPUT",
+        "shiftKey": true,
         "ariaRole": "textbox",
         "ariaName": "Name",
         "testId": "userDialog",
-        "key": "j"
+        "key": "Shift"
       },
-      "fillValue": "jon"
+      "fillValue": "Jon"
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "BUTTON",
+        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+        "ariaRole": "button",
+        "ariaName": "Save",
+        "testId": "userDialog"
+      },
+      "validationErrors": [
+        {
+          "form": "Form",
+          "errorCount": 1,
+          "errorFields": [
+            "email"
+          ]
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "ModalDialog",
+        "label": "Add User",
+        "componentId": "userDialog",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Email",
+        "testId": "userDialog"
+      }
     },
     {
       "action": "fill",
@@ -83,7 +118,7 @@
         "testId": "userDialog",
         "key": "j"
       },
-      "fillValue": "jon@c.y"
+      "fillValue": "j@b.c"
     },
     {
       "action": "click",
@@ -97,8 +132,8 @@
         "ariaName": "Save",
         "testId": "userDialog",
         "formData": {
-          "name": "jon",
-          "email": "jon@c.y"
+          "name": "Jon",
+          "email": "j@b.c"
         }
       },
       "await": {

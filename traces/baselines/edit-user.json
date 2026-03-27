@@ -63,10 +63,48 @@
           },
           {
             "method": "GET",
-            "endpoint": "/api/users"
+            "endpoint": "/api/users",
+            "apiResult": {
+              "type": "rowcount",
+              "count": 2,
+              "keys": [
+                "email",
+                "id",
+                "name",
+                "phone"
+              ]
+            }
           }
         ]
       }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Select",
+        "label": "All users",
+        "ariaRole": "option",
+        "ariaName": "All users",
+        "selectAriaLabel": "Phone filter"
+      },
+      "stateDiffs": [
+        {
+          "path": "filteredUsers",
+          "before": 0,
+          "after": 2,
+          "added": [
+            "Leanne Graham2",
+            "Ervin Howell"
+          ]
+        }
+      ],
+      "dataBinds": [
+        {
+          "component": "Table",
+          "prevCount": 0,
+          "rowCount": 2
+        }
+      ]
     }
   ]
 }

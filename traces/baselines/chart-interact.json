@@ -3,38 +3,24 @@
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
+        "component": "NavPanel",
         "targetTag": "DIV",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Charts",
-        "ariaRole": "tab",
-        "ariaName": "Charts",
-        "testId": "mainTabs"
+        "ariaRole": "link",
+        "ariaName": "Charts"
       }
     },
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
-        "targetTag": "CANVAS",
-        "ariaRole": "tabpanel",
-        "ariaName": "Charts",
-        "testId": "mainTabs"
+        "component": "Pages",
+        "targetTag": "CANVAS"
       }
     },
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
-        "targetTag": "CANVAS",
-        "ariaRole": "tabpanel",
-        "ariaName": "Charts",
-        "testId": "mainTabs"
+        "component": "Pages",
+        "targetTag": "CANVAS"
       }
     }
   ]

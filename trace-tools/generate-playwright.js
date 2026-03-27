@@ -718,7 +718,7 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
         lines.push(`${indent}await page.getByRole('option', { name: '${optionName}', exact: true }).click();`);
         break;
       }
-      const clickLines = generateClickCode(step, indent, 'click', fillPlan);
+      const clickLines = generateClickCode(step, indent, 'click', fillPlan, stepIndex);
       lines.push(...clickLines);
       if (clickLines._skipAwait) {
         return lines;
@@ -743,7 +743,7 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
       break;
 
     case 'dblclick':
-      lines.push(...generateClickCode(step, indent, 'dblclick', fillPlan));
+      lines.push(...generateClickCode(step, indent, 'dblclick', fillPlan, stepIndex));
       break;
 
     case 'keydown': {
@@ -938,7 +938,7 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
   return lines;
 }
 
-function generateClickCode(step, indent, method = 'click', fillPlan = {}) {
+function generateClickCode(step, indent, method = 'click', fillPlan = {}, stepIndex = 0) {
   const lines = [];
   const label = step.target?.label;
   const ariaRole = step.target?.ariaRole;
@@ -961,14 +961,23 @@ function generateClickCode(step, indent, method = 'click', fillPlan = {}) {
     return lines;
   }
 
-  // Textbox click with ariaName: generate fill() if we matched a formData field
+  // Textbox click with ariaName: generate fill() if we matched a formData field,
+  // but only if the next step is actually typing into this field (keydown/fill).
+  // A click followed by something else (e.g. clicking Submit) is just a focus click.
   if (ariaRole === 'textbox' && ariaName && fillPlan.fills?.has(ariaName)) {
-    const { value } = fillPlan.fills.get(ariaName);
-    fillPlan.fills.consume(ariaName);
-    if (!fillPlan._filledInCurrentForm) fillPlan._filledInCurrentForm = new Set();
-    fillPlan._filledInCurrentForm.add(ariaName);
-    lines.push(`${indent}await page.getByRole('textbox', { name: '${esc(ariaName)}' }).fill('${esc(value)}');`);
-    return lines;
+    const allSteps = fillPlan._allSteps || [];
+    const nextStep = allSteps[stepIndex + 1];
+    const nextIsTyping = nextStep &&
+      (nextStep.action === 'fill' || nextStep.action === 'keydown') &&
+      nextStep.target?.ariaName === ariaName;
+    if (nextIsTyping) {
+      const { value } = fillPlan.fills.get(ariaName);
+      fillPlan.fills.consume(ariaName);
+      if (!fillPlan._filledInCurrentForm) fillPlan._filledInCurrentForm = new Set();
+      fillPlan._filledInCurrentForm.add(ariaName);
+      lines.push(`${indent}await page.getByRole('textbox', { name: '${esc(ariaName)}' }).fill('${esc(value)}');`);
+      return lines;
+    }
   }
 
   // Form submit button: fill any formData fields not already covered by textbox

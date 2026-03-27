@@ -1,4 +1,4 @@
-<App name="Regression">
+<App name="Regression" layout="vertical">
 
   <AppHeader>
     <Text fontWeight="bold">Regression</Text>
@@ -6,13 +6,24 @@
     <Inspector />
   </AppHeader>
 
-  <Tabs id="mainTabs" aria-label="Main tabs">
-    <TabItem label="Users"><UsersTab /></TabItem>
-    <TabItem label="Settings"><SettingsTab /></TabItem>
-    <TabItem label="Charts"><ChartsTab /></TabItem>
-    <TabItem label="Search"><SearchTab /></TabItem>
-    <TabItem label="LondonTube"><LondonTubeTab /></TabItem>
-    <TabItem label="About"><AboutTab /></TabItem>
-  </Tabs>
+  <NavPanel>
+    <NavGroup label="Initial tests">
+    <NavLink label="Users" to="/" exact="true" />
+    <NavLink label="Settings" to="/settings" />
+    <NavLink label="Charts" to="/charts" />
+    <NavLink label="Search" to="/search" />
+    <NavLink label="LondonTube" to="/london-tube" />
+    </NavGroup>
+    <NavLink label="About" to="/about" />
+  </NavPanel>
+
+  <Pages fallbackPath="/">
+    <Page url="/"><UsersTab /></Page>
+    <Page url="/settings"><SettingsTab /></Page>
+    <Page url="/charts"><ChartsTab /></Page>
+    <Page url="/search"><SearchTab /></Page>
+    <Page url="/london-tube"><LondonTubeTab /></Page>
+    <Page url="/about"><AboutTab /></Page>
+  </Pages>
 
 </App>

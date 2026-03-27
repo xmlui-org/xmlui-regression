@@ -3,27 +3,19 @@
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
+        "component": "NavPanel",
         "targetTag": "DIV",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Settings",
-        "ariaRole": "tab",
-        "ariaName": "Settings",
-        "testId": "mainTabs"
+        "ariaRole": "link",
+        "ariaName": "Settings"
       }
     },
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
+        "component": "NavPanel",
         "targetTag": "DIV",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=About",
-        "ariaRole": "tab",
-        "ariaName": "About",
-        "testId": "mainTabs"
+        "ariaRole": "link",
+        "ariaName": "About"
       }
     }
   ]

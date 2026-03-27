@@ -3,14 +3,10 @@
     {
       "action": "click",
       "target": {
-        "component": "Tabs",
-        "label": "Main tabs",
-        "componentId": "mainTabs",
+        "component": "Pages",
         "targetTag": "BUTTON",
-        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
         "ariaRole": "button",
-        "ariaName": "Add User",
-        "testId": "mainTabs"
+        "ariaName": "Add User"
       }
     },
     {
