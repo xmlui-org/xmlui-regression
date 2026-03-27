@@ -1345,11 +1345,11 @@ function generateApiResultAssertions(captures, indent, endpointHistory) {
           lines.push(`${indent}expect(${bodyVar}.length).toBe(${prev.count});`);
         }
       } else {
-        // First occurrence: assert non-empty
-        lines.push(`${indent}expect(${bodyVar}.length).toBeGreaterThan(0);`);
+        // First occurrence: assert it's an array (may be empty if data was cleared)
+        lines.push(`${indent}expect(Array.isArray(${bodyVar})).toBe(true);`);
       }
       const keysStr = apiResult.keys.map(k => `'${k}'`).join(', ');
-      lines.push(`${indent}expect(Object.keys(${bodyVar}[0]).sort()).toEqual([${keysStr}]);`);
+      lines.push(`${indent}if (${bodyVar}.length > 0) { expect(Object.keys(${bodyVar}[0]).sort()).toEqual([${keysStr}]); }`);
       // Record for future steps
       if (endpointHistory && path && apiResult.count != null) {
         endpointHistory.set(path, { count: apiResult.count, bodyVar });
