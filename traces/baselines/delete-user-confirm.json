@@ -54,33 +54,6 @@
           "buttonLabel": "Yes"
         }
       ]
-    },
-    {
-      "action": "click",
-      "target": {
-        "component": "Select",
-        "label": "All users",
-        "ariaRole": "option",
-        "ariaName": "All users",
-        "selectAriaLabel": "Phone filter"
-      },
-      "stateDiffs": [
-        {
-          "path": "filteredUsers",
-          "before": 0,
-          "after": 1,
-          "added": [
-            "Ervin Howell"
-          ]
-        }
-      ],
-      "dataBinds": [
-        {
-          "component": "Table",
-          "prevCount": 0,
-          "rowCount": 1
-        }
-      ]
     }
   ]
 }
