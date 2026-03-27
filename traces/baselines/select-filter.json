@@ -3,7 +3,8 @@
     {
       "action": "click",
       "target": {
-        "component": "Pages",
+        "component": "Add User",
+        "label": "Add User",
         "targetTag": "BUTTON",
         "ariaRole": "button",
         "ariaName": "Add User"
@@ -15,9 +16,9 @@
         "component": "ModalDialog",
         "label": "Add User",
         "componentId": "userDialog",
-        "targetTag": "DIV",
-        "ariaRole": "dialog",
-        "ariaName": "Add User",
+        "targetTag": "INPUT",
+        "ariaRole": "textbox",
+        "ariaName": "Name",
         "testId": "userDialog"
       }
     },
@@ -31,9 +32,9 @@
         "ariaRole": "textbox",
         "ariaName": "Name",
         "testId": "userDialog",
-        "key": "a"
+        "key": "j"
       },
-      "fillValue": "a"
+      "fillValue": "j"
     },
     {
       "action": "fill",
@@ -42,40 +43,13 @@
         "label": "Add User",
         "componentId": "userDialog",
         "targetTag": "INPUT",
+        "shiftKey": true,
         "ariaRole": "textbox",
         "ariaName": "Email",
         "testId": "userDialog",
-        "key": "b"
+        "key": "Shift"
       },
-      "fillValue": "b@c.d"
-    },
-    {
-      "action": "keydown",
-      "target": {
-        "component": "ModalDialog",
-        "label": "Add User",
-        "componentId": "userDialog",
-        "targetTag": "BUTTON",
-        "selectorPath": "[data-testid=\"userDialog\"] >> text=Cancel",
-        "ariaRole": "button",
-        "ariaName": "Cancel",
-        "testId": "userDialog",
-        "key": "Tab"
-      }
-    },
-    {
-      "action": "keydown",
-      "target": {
-        "component": "ModalDialog",
-        "label": "Add User",
-        "componentId": "userDialog",
-        "targetTag": "BUTTON",
-        "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
-        "ariaRole": "button",
-        "ariaName": "Save",
-        "testId": "userDialog",
-        "key": "Enter"
-      }
+      "fillValue": "a@b.c"
     },
     {
       "action": "click",
@@ -89,8 +63,8 @@
         "ariaName": "Save",
         "testId": "userDialog",
         "formData": {
-          "name": "a",
-          "email": "b@c.d"
+          "name": "j",
+          "email": "a@b.c"
         }
       },
       "await": {
@@ -108,7 +82,8 @@
         "component": "Select",
         "label": "Has phone",
         "ariaRole": "option",
-        "ariaName": "Has phone"
+        "ariaName": "Has phone",
+        "selectAriaLabel": "Phone filter"
       },
       "stateDiffs": [
         {
@@ -135,7 +110,8 @@
         "component": "Select",
         "label": "No phone",
         "ariaRole": "option",
-        "ariaName": "No phone"
+        "ariaName": "No phone",
+        "selectAriaLabel": "Phone filter"
       },
       "stateDiffs": [
         {
@@ -143,7 +119,7 @@
           "before": 2,
           "after": 1,
           "added": [
-            "a"
+            "j"
           ],
           "removed": [
             "Leanne Graham",
