@@ -354,12 +354,15 @@ function distillTrace(logs) {
         const startTs = step._firstPerfTs || 0;
 
         // Consume all consecutive keydowns on the same textbox.
-        // Match by componentId when available (handles dynamic aria-labels
-        // that change on each keystroke, e.g. "Search: N results").
+        // Match by ariaName first (distinguishes fields in the same form).
+        // Fall back to componentId only for dynamic labels that change on
+        // each keystroke (e.g. "Search: N results").
+        const hasDynamicLabel = ariaName && ariaName.includes(':');
+        const matchByComponentId = !ariaName || hasDynamicLabel;
         while (i < steps.length &&
                steps[i].action === 'keydown' &&
                steps[i].target?.ariaRole === 'textbox' &&
-               (componentId
+               (matchByComponentId
                  ? steps[i].target?.componentId === componentId
                  : steps[i].target?.ariaName === ariaName)) {
           i++;
