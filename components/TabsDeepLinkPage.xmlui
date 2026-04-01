@@ -1,0 +1,62 @@
+<Component name="TabsDeepLinkPage">
+  <variable name="activeTabInfo" value="(none)" />
+
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>Tabs and deep links</H2>
+    <Text>Switch tabs, verify URL updates, navigate via query params.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. Basic tab switching</Text>
+        <Tabs id="mainTabs" aria-label="Main tabs"
+          activeTab="{$queryParams.tab ? parseInt($queryParams.tab) : 0}"
+          onDidChange="(index, id, label) => activeTabInfo = index + ': ' + label">
+          <TabItem label="Overview" id="overview">
+            <VStack padding="$space-2" gap="$space-2">
+              <Text aria-label="overview content">This is the Overview panel.</Text>
+              <Badge aria-label="overview badge" value="Active" />
+            </VStack>
+          </TabItem>
+          <TabItem label="Details" id="details">
+            <VStack padding="$space-2" gap="$space-2">
+              <Text aria-label="details content">This is the Details panel.</Text>
+              <List data="{[{name: 'Item A'}, {name: 'Item B'}, {name: 'Item C'}]}">
+                <Text>{$item.name}</Text>
+              </List>
+            </VStack>
+          </TabItem>
+          <TabItem label="Settings" id="settings">
+            <VStack padding="$space-2" gap="$space-2">
+              <Text aria-label="settings content">This is the Settings panel.</Text>
+              <Checkbox aria-label="Enable notifications" label="Enable notifications" />
+              <Checkbox aria-label="Dark mode" label="Dark mode" />
+            </VStack>
+          </TabItem>
+        </Tabs>
+        <Text aria-label="active tab info">Last tab change: {activeTabInfo}</Text>
+      </VStack>
+    </Card>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">2. Programmatic navigation</Text>
+        <HStack gap="$space-2">
+          <Button label="Go to Overview" aria-label="Go to Overview" size="sm"
+            onClick="mainTabs.setActiveTabById('overview')" />
+          <Button label="Go to Details" aria-label="Go to Details" size="sm"
+            onClick="mainTabs.setActiveTabById('details')" />
+          <Button label="Go to Settings" aria-label="Go to Settings" size="sm"
+            onClick="mainTabs.setActiveTabById('settings')" />
+        </HStack>
+        <HStack gap="$space-2">
+          <Button label="Previous" aria-label="Previous tab" size="sm"
+            onClick="mainTabs.prev()" />
+          <Button label="Next" aria-label="Next tab" size="sm"
+            onClick="mainTabs.next()" />
+        </HStack>
+      </VStack>
+    </Card>
+
+    <ViewSource file="TabsDeepLinkPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

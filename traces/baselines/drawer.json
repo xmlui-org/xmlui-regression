@@ -1,0 +1,122 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Layout & Interaction",
+        "label": "Layout & Interaction",
+        "targetTag": "DIV",
+        "ariaRole": "button",
+        "ariaName": "Layout & Interaction"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Drawer",
+        "label": "Drawer",
+        "targetTag": "DIV",
+        "ariaRole": "link",
+        "ariaName": "Drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Open left",
+        "label": "Open left",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Open left drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Close",
+        "label": "Close",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Close left drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Open right",
+        "label": "Open right",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Open right drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Close",
+        "label": "Close",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Close right drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Open bottom",
+        "label": "Open bottom",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Open bottom drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Close",
+        "label": "Close",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Close bottom drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Open settings",
+        "label": "Open settings",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Open settings drawer"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Toggle",
+        "label": null,
+        "targetTag": "INPUT",
+        "ariaRole": "checkbox",
+        "ariaName": "Enable dark mode"
+      },
+      "valueChanges": [
+        {
+          "component": "Checkbox",
+          "value": "true",
+          "ariaName": "Enable dark mode",
+          "componentLabel": "Enable dark mode"
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Apply",
+        "label": "Apply",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Apply settings"
+      }
+    }
+  ]
+}

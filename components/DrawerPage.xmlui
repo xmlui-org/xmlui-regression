@@ -1,0 +1,69 @@
+<Component name="DrawerPage">
+  <variable name="drawerEvents" value="(none)" />
+
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>Drawer</H2>
+    <Text>Slide-in panels from different edges, with backdrop and event tracking.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. Open from different positions</Text>
+        <HStack gap="$space-2">
+          <Button label="Open left" aria-label="Open left drawer" size="sm"
+            onClick="leftDrawer.open()" />
+          <Button label="Open right" aria-label="Open right drawer" size="sm"
+            onClick="rightDrawer.open()" />
+          <Button label="Open bottom" aria-label="Open bottom drawer" size="sm"
+            onClick="bottomDrawer.open()" />
+        </HStack>
+        <Text aria-label="drawer events">Events: {drawerEvents}</Text>
+      </VStack>
+    </Card>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">2. Drawer with form content</Text>
+        <Button label="Open settings" aria-label="Open settings drawer" size="sm"
+          onClick="settingsDrawer.open()" />
+      </VStack>
+    </Card>
+
+    <Drawer id="leftDrawer" position="left" aria-label="Left drawer"
+      onOpen="drawerEvents = 'left opened'"
+      onClose="drawerEvents = 'left closed'">
+      <Text variant="strong">Left Drawer</Text>
+      <Text aria-label="left drawer content">Navigation panel content</Text>
+      <Button label="Close" aria-label="Close left drawer" onClick="leftDrawer.close()" />
+    </Drawer>
+
+    <Drawer id="rightDrawer" position="right" aria-label="Right drawer"
+      onOpen="drawerEvents = 'right opened'"
+      onClose="drawerEvents = 'right closed'">
+      <Text variant="strong">Right Drawer</Text>
+      <Text aria-label="right drawer content">Details panel content</Text>
+      <Button label="Close" aria-label="Close right drawer" onClick="rightDrawer.close()" />
+    </Drawer>
+
+    <Drawer id="bottomDrawer" position="bottom" aria-label="Bottom drawer"
+      onOpen="drawerEvents = 'bottom opened'"
+      onClose="drawerEvents = 'bottom closed'">
+      <Text variant="strong">Bottom Drawer</Text>
+      <Text aria-label="bottom drawer content">Action sheet content</Text>
+      <Button label="Close" aria-label="Close bottom drawer" onClick="bottomDrawer.close()" />
+    </Drawer>
+
+    <Drawer id="settingsDrawer" position="right" aria-label="Settings drawer"
+      onOpen="drawerEvents = 'settings opened'"
+      onClose="drawerEvents = 'settings closed'">
+      <Text variant="strong">Settings</Text>
+      <VStack gap="$space-2">
+        <Checkbox aria-label="Enable dark mode" label="Enable dark mode" />
+        <Checkbox aria-label="Show sidebar" label="Show sidebar" initialValue="{true}" />
+        <Slider aria-label="Font size" label="Font size" minValue="{10}" maxValue="{24}" initialValue="{14}" />
+      </VStack>
+      <Button label="Apply" aria-label="Apply settings" onClick="settingsDrawer.close()" />
+    </Drawer>
+
+    <ViewSource file="DrawerPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

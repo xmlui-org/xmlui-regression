@@ -1,0 +1,100 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Layout & Interaction",
+        "label": "Layout & Interaction",
+        "targetTag": "DIV",
+        "ariaRole": "button",
+        "ariaName": "Layout & Interaction"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs & deep links",
+        "label": "Tabs & deep links",
+        "targetTag": "DIV",
+        "ariaRole": "link",
+        "ariaName": "Tabs & deep links"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Details",
+        "ariaRole": "tab",
+        "ariaName": "Details",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Tabs",
+        "label": "Main tabs",
+        "componentId": "mainTabs",
+        "targetTag": "DIV",
+        "selectorPath": "[data-testid=\"mainTabs\"] >> text=Settings",
+        "ariaRole": "tab",
+        "ariaName": "Settings",
+        "testId": "mainTabs"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "TabItem",
+        "label": "Settings",
+        "componentId": "settings",
+        "targetTag": "INPUT",
+        "ariaRole": "checkbox",
+        "ariaName": "Enable notifications",
+        "testId": "settings"
+      },
+      "valueChanges": [
+        {
+          "component": "Checkbox",
+          "value": "true",
+          "ariaName": "Enable notifications",
+          "componentLabel": "Enable notifications"
+        }
+      ]
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Go to Overview",
+        "label": "Go to Overview",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Go to Overview"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Next",
+        "label": "Next",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Next tab"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Previous",
+        "label": "Previous",
+        "targetTag": "BUTTON",
+        "ariaRole": "button",
+        "ariaName": "Previous tab"
+      }
+    }
+  ]
+}

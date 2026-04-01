@@ -29,6 +29,10 @@
       <NavLink label="ChangeListener" to="/changelistener" />
       <NavLink label="Local modifications" to="/local-mods" />
     </NavGroup>
+    <NavGroup label="Layout & Interaction" aria-label="Layout & Interaction">
+      <NavLink label="Tabs & deep links" to="/tabs-deep-link" />
+      <NavLink label="Drawer" to="/drawer" />
+    </NavGroup>
     <NavLink label="About" to="/about" />
   </NavPanel>
 
@@ -43,6 +47,8 @@
     <Page url="/ds-cross"><DsCrossPage /></Page>
     <Page url="/changelistener"><ChangeListenerPage /></Page>
     <Page url="/local-mods"><LocalModsPage /></Page>
+    <Page url="/tabs-deep-link"><TabsDeepLinkPage /></Page>
+    <Page url="/drawer"><DrawerPage /></Page>
     <Page url="/about"><AboutTab /></Page>
   </Pages>
 
