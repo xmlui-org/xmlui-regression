@@ -1,0 +1,31 @@
+<Component name="FuncReactivityPage">
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>Function reactivity</H2>
+    <Text>Test that markup expressions calling Globals.xs functions track dependencies.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. Function reads .xs var</Text>
+        <Text aria-label="getUserCount result">getUserCount() = {getUserCount()}</Text>
+
+        <Text variant="strong">2. Threshold comparison (reactive)</Text>
+        <Text aria-label="threshold value">threshold = {threshold}</Text>
+        <HStack gap="$space-2">
+          <Button label="Set threshold 1" aria-label="Set threshold 1" onClick="threshold = 1" />
+          <Button label="Set threshold 5" aria-label="Set threshold 5" onClick="threshold = 5" />
+        </HStack>
+        <Text when="{isAboveThreshold()}" aria-label="above threshold">ABOVE threshold</Text>
+        <Text when="{!isAboveThreshold()}" aria-label="below threshold">BELOW threshold</Text>
+
+        <Text variant="strong">3. Chained function calls</Text>
+        <Text aria-label="formatCount result">{formatCount(getUserCount())}</Text>
+
+        <Text variant="strong">4. Counter (global .xs var mutation)</Text>
+        <Text aria-label="counter value">xsCounter = {getCounter()}</Text>
+        <Button label="Increment counter" aria-label="Increment counter" onClick="incrementCounter()" />
+      </VStack>
+    </Card>
+
+    <ViewSource file="FuncReactivityPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

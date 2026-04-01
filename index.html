@@ -3,6 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module">
+      import { createHighlighterCoreSync } from 'https://esm.sh/shiki@3.4.2/core';
+      import { createJavaScriptRegexEngine } from 'https://esm.sh/shiki@3.4.2/engine/javascript';
+
+      const [grammar, themeLight, themeDark] = await Promise.all([
+        fetch('/xmlui/syntax/xmlui.tmLanguage.json').then(r => r.json()),
+        fetch('/xmlui/syntax/xmlui-light.json').then(r => r.json()),
+        fetch('/xmlui/syntax/xmlui-dark.json').then(r => r.json()),
+      ]);
+
+      const highlighter = createHighlighterCoreSync({
+        langs: [grammar],
+        themes: [themeLight, themeDark],
+        engine: createJavaScriptRegexEngine(),
+      });
+
+      window.__xmluiCodeHighlighter = {
+        availableLangs: highlighter.getLoadedLanguages(),
+        highlight(code, lang, meta, themeTone) {
+          if (!code) return '';
+          themeTone = themeTone || 'light';
+          return highlighter.codeToHtml(code, {
+            lang,
+            theme: `xmlui-${themeTone}`,
+          });
+        },
+      };
+    </script>
     <script src="xmlui/xmlui-standalone.umd.js"></script>
     <script src="xmlui/xmlui-echart.js"></script>
   </head>

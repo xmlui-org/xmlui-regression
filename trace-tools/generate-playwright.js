@@ -630,12 +630,17 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
         apiAwaits.push({ path, method: api.method, varName: `responsePromise${promiseCounter}_${apiAwaits.length}`, apiResult: api.apiResult });
       }
     }
-    for (const { path, varName, method } of apiAwaits) {
+    for (const { path, varName, method, apiResult } of apiAwaits) {
       // Encode spaces in endpoint paths so they match URL-encoded requests
       const urlPath = path.replace(/ /g, '%20');
       const isMutating = method && ['POST', 'PUT', 'DELETE', 'PATCH'].includes(method);
+      // When the baseline expects data (snapshot/rowcount), require status 200
+      // to skip auth-gated empty responses that arrive before the session is ready
+      const needsContent = apiResult && (apiResult.type === 'snapshot' || (apiResult.type === 'rowcount' && apiResult.count > 0));
       if (isMutating) {
         lines.push(`${indent}const ${varName} = page.waitForResponse(r => r.url().includes('${urlPath}') && r.request().method() === '${method}');`);
+      } else if (needsContent) {
+        lines.push(`${indent}const ${varName} = page.waitForResponse(async r => r.url().includes('${urlPath}') && r.status() === 200 && (await r.body()).length > 2);`);
       } else {
         lines.push(`${indent}const ${varName} = page.waitForResponse(r => r.url().includes('${urlPath}'));`);
       }
@@ -882,6 +887,8 @@ function generateStepCode(step, fillPlan, promiseCounter = 0, stepIndex = 0, ign
       }
 
       if (vc.value == null) continue;
+      // ChangeListener value changes are internal reactive state, not assertable UI
+      if (vc.component === 'ChangeListener') continue;
       const escaped = esc(vc.value);
       const vcComponent = vc.component; // e.g. "TextBox", "Slider"
       const ariaRole = step.target?.ariaRole;
@@ -1330,7 +1337,9 @@ function generateApiResultAssertions(captures, indent, endpointHistory) {
       // and array responses.
       const keysStr = apiResult.keys.map(k => `'${k}'`).join(', ');
       lines.push(`${indent}{ const _snap = Array.isArray(${bodyVar}) ? ${bodyVar}[0] : ${bodyVar};`);
-      lines.push(`${indent}  expect(Object.keys(_snap).sort()).toEqual([${keysStr}]); }`);
+      // Superset check: new columns are OK, missing columns fail
+      lines.push(`${indent}  const _keys = Object.keys(_snap).sort();`);
+      lines.push(`${indent}  [${keysStr}].forEach(k => expect(_keys).toContain(k)); }`);
 
     } else if (apiResult.type === 'rowcount') {
       const prev = endpointHistory && path ? endpointHistory.get(path) : null;
@@ -1349,7 +1358,8 @@ function generateApiResultAssertions(captures, indent, endpointHistory) {
         lines.push(`${indent}expect(Array.isArray(${bodyVar})).toBe(true);`);
       }
       const keysStr = apiResult.keys.map(k => `'${k}'`).join(', ');
-      lines.push(`${indent}if (${bodyVar}.length > 0) { expect(Object.keys(${bodyVar}[0]).sort()).toEqual([${keysStr}]); }`);
+      // Superset check: new columns are OK, missing columns fail
+      lines.push(`${indent}if (${bodyVar}.length > 0) { const _keys = Object.keys(${bodyVar}[0]).sort(); [${keysStr}].forEach(k => expect(_keys).toContain(k)); }`);
       // Record for future steps
       if (endpointHistory && path && apiResult.count != null) {
         endpointHistory.set(path, { count: apiResult.count, bodyVar });

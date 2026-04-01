@@ -1,0 +1,7 @@
+<Component name="UserCountDisplay">
+  <VStack padding="$space-2" border="1px solid $color-surface-300" borderRadius="$borderRadius">
+    <Text variant="strong">UserCountDisplay (child component)</Text>
+    <Text when="{userCount === null}" aria-label="userCount loading">userCount is null (not yet loaded)</Text>
+    <Text when="{userCount !== null}" aria-label="userCount loaded">{userCount} users visible in child</Text>
+  </VStack>
+</Component>

@@ -1,0 +1,20 @@
+<Component name="DsCrossPage">
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>DataSource across components</H2>
+    <Text>Test DataSource visibility across component boundaries.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. Parent DataSource by id (should be out of scope)</Text>
+        <Text aria-label="parent ds test">users.value: {users?.value ? 'defined' : 'not in scope'}</Text>
+
+        <Text variant="strong">2. .xs var (cross-component, should work)</Text>
+        <Text aria-label="xs var test">userCount = {userCount ?? 'null'}</Text>
+
+        <Text variant="strong">3. Child with own DataSource + props</Text>
+        <DsCrossChild passedCount="{userCount}" />
+      </VStack>
+    </Card>
+    <ViewSource file="DsCrossPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

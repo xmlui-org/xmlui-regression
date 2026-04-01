@@ -1,0 +1,19 @@
+<Component name="ChangeListenerPage">
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>ChangeListener pattern</H2>
+    <Text>ChangeListener bridges DataSource loading into a global .xs var.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Spinner when="{userCount === null}" />
+        <VStack when="{userCount !== null}" gap="$space-2">
+          <Text aria-label="user count">{userCount} users (via ChangeListener into .xs var)</Text>
+          <Button label="Decrement" aria-label="Decrement user count" onClick="userCount = userCount - 1" />
+        </VStack>
+
+        <UserCountDisplay />
+      </VStack>
+    </Card>
+    <ViewSource file="ChangeListenerPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

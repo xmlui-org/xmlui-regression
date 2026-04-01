@@ -1,0 +1,29 @@
+<Component name="VarTypesPage">
+  <DataSource id="localUsers" url="/api/users" />
+  <variable name="localVar" value="{(localUsers.value || []).length}" />
+
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>Variable types</H2>
+    <Text>Side-by-side comparison of reactive state mechanisms.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. variable (local, subscribing)</Text>
+        <Text aria-label="localVar value">localVar = {localVar}</Text>
+
+        <Text variant="strong">2. global (cross-component, subscribing)</Text>
+        <Text aria-label="globalUserCount value">globalUserCount = {globalUserCount ?? 'not in scope'}</Text>
+
+        <Text variant="strong">3. .xs var (cross-component, set via ChangeListener)</Text>
+        <Text aria-label="userCount value">userCount = {userCount ?? 'null (not yet loaded)'}</Text>
+
+        <Text variant="strong">4. variable from Main.xmlui (scoping test)</Text>
+        <Text aria-label="variableUserCount value">variableUserCount = {variableUserCount ?? 'not in scope'}</Text>
+      </VStack>
+    </Card>
+
+    <UserCountDisplay />
+
+    <ViewSource file="VarTypesPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

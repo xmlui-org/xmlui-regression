@@ -1,0 +1,10 @@
+<Component name="DsCrossChild">
+  <DataSource id="childCountries" url="/api/countries?q=united" />
+
+  <VStack padding="$space-2" border="1px solid $color-surface-300" borderRadius="$borderRadius">
+    <Text variant="strong">DsCrossChild (child component)</Text>
+    <Text aria-label="child ds count">childCountries count: {(childCountries.value || []).length}</Text>
+    <Text aria-label="passed count">$props.passedCount: {$props.passedCount ?? 'not received'}</Text>
+    <Text aria-label="xs var in child">userCount (from Globals.xs): {userCount ?? 'null'}</Text>
+  </VStack>
+</Component>

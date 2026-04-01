@@ -18,5 +18,6 @@
       <Column bindTo="name" />
       <Column bindTo="modes" />
     </Table>
+    <ViewSource file="LondonTubeTab.xmlui" />
   </VStack>
 </Component>

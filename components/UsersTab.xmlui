@@ -60,5 +60,6 @@
       <Column bindTo="email" />
       <Column bindTo="phone" />
     </Table>
+    <ViewSource file="UsersTab.xmlui" />
   </VStack>
 </Component>

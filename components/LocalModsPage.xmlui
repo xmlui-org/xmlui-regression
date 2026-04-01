@@ -1,0 +1,21 @@
+<Component name="LocalModsPage">
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>Local modifications</H2>
+    <Text>Edit server data locally without being overwritten on refresh.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Spinner when="{userCount === null}" />
+        <VStack when="{userCount !== null}" gap="$space-2">
+          <Text aria-label="local count">userCount = {userCount}</Text>
+          <HStack gap="$space-2">
+            <Button label="Decrement" aria-label="Decrement" onClick="userCount = userCount - 1" />
+            <Button label="Increment" aria-label="Increment" onClick="userCount = userCount + 1" />
+            <Button label="Reset to 2" aria-label="Reset" onClick="userCount = 2" />
+          </HStack>
+        </VStack>
+      </VStack>
+    </Card>
+    <ViewSource file="LocalModsPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

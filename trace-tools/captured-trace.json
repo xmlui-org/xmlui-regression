@@ -1,33 +1,29 @@
 [
   {
-    "ts": 1774472329852,
-    "perfTs": 697.5999999642372,
-    "eventTs": 694.3000000119209,
+    "ts": 1775054696912,
+    "perfTs": 1162.2999999523163,
+    "eventTs": 1157.2000000476837,
     "kind": "interaction",
     "eventName": "click",
-    "uid": "mainTabs",
-    "traceId": "i-mn6j0cjg-i1dy1q",
-    "componentType": "Tabs",
-    "componentLabel": "Main tabs",
+    "traceId": "i-mng5qhu8-5dpcnf",
+    "componentLabel": "Add User",
     "interaction": "click",
     "ariaRole": "button",
     "ariaName": "Add User",
     "detail": {
-      "componentId": "mainTabs",
       "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"mainTabs\"] >> text=Add User",
-      "text": "UsersSettingsChartsSearchLondonTubeAboutUsersAdd UseridnameemailphoneActionsF…",
+      "text": "Add User",
       "ariaRole": "button",
       "ariaName": "Add User",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"mainTabs\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"mainTabs\\\"] >> text=Add User\",\n  \"text\": \"UsersSettingsChartsSearchLondonTubeAboutUsersAdd UseridnameemailphoneActionsF…\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
+    "text": "{\n  \"targetTag\": \"BUTTON\",\n  \"text\": \"Add User\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774472329854,
-    "perfTs": 699.5999999642372,
-    "traceId": "i-mn6j0cjg-i1dy1q",
-    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"args\": [\n      {\n        \"_reactName\": \"onClick\",\n        \"_targetInst\": null,\n        \"type\": \"click\",\n        \"nativeEvent\": {\n          \"isTrusted\": true\n        },\n        \"target\": \"[DOM Node]\",\n        \"currentTarget\": \"[DOM Node]\",\n        \"eventPhase\": 3,\n        \"bubbles\": true,\n        \"cancelable\": true,\n        \"timeStamp\": 694.3000000119209,\n        \"defaultPrevented\": true,\n        \"isTrusted\": true,\n        \"view\": \"[Window]\",\n        \"detail\": 1,\n        \"screenX\": 1304,\n        \"screenY\": 311,\n        \"clientX\": 1282,\n        \"clientY\": 159,\n        \"pageX\": 1282,\n        \"pageY\": 159,\n        \"ctrlKey\": false,\n        \"shiftKey\": false,\n        \"altKey\": false,\n        \"metaKey\": false,\n        \"getModifierState\": \"[Function]\",\n        \"button\": 0,\n        \"buttons\": 0,\n        \"relatedTarget\": null,\n        \"movementX\": 0,\n        \"movementY\": 0,\n        \"isDefaultPrevented\": \"[Function]\",\n        \"isPropagationStopped\": \"[Function]\"\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\"\n  }\n]",
+    "ts": 1775054696915,
+    "perfTs": 1166.2999999523163,
+    "traceId": "i-mng5qhu8-5dpcnf",
+    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"args\": [\n      {\n        \"_reactName\": \"onClick\",\n        \"_targetInst\": null,\n        \"type\": \"click\",\n        \"nativeEvent\": {\n          \"isTrusted\": true\n        },\n        \"target\": \"[DOM Node]\",\n        \"currentTarget\": \"[DOM Node]\",\n        \"eventPhase\": 3,\n        \"bubbles\": true,\n        \"cancelable\": true,\n        \"timeStamp\": 1157.2000000476837,\n        \"defaultPrevented\": true,\n        \"isTrusted\": true,\n        \"view\": \"[Window]\",\n        \"detail\": 1,\n        \"screenX\": 1369,\n        \"screenY\": 261,\n        \"clientX\": 1347,\n        \"clientY\": 109,\n        \"pageX\": 1347,\n        \"pageY\": 109,\n        \"ctrlKey\": false,\n        \"shiftKey\": false,\n        \"altKey\": false,\n        \"metaKey\": false,\n        \"getModifierState\": \"[Function]\",\n        \"button\": 0,\n        \"buttons\": 0,\n        \"relatedTarget\": null,\n        \"movementX\": 0,\n        \"movementY\": 0,\n        \"isDefaultPrevented\": \"[Function]\",\n        \"isPropagationStopped\": \"[Function]\"\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\"\n  }\n]",
     "kind": "handler:start",
     "eventName": "click",
     "componentType": "Button",
@@ -51,17 +47,17 @@
         "eventPhase": 3,
         "bubbles": true,
         "cancelable": true,
-        "timeStamp": 694.3000000119209,
+        "timeStamp": 1157.2000000476837,
         "defaultPrevented": true,
         "isTrusted": true,
         "view": "[Window]",
         "detail": 1,
-        "screenX": 1304,
-        "screenY": 311,
-        "clientX": 1282,
-        "clientY": 159,
-        "pageX": 1282,
-        "pageY": 159,
+        "screenX": 1369,
+        "screenY": 261,
+        "clientX": 1347,
+        "clientY": 109,
+        "pageX": 1347,
+        "pageY": 109,
         "ctrlKey": false,
         "shiftKey": false,
         "altKey": false,
@@ -78,20 +74,21 @@
     ]
   },
   {
-    "ts": 1774472329855,
-    "perfTs": 700.5,
-    "traceId": "t-mn6j0cjj-vii96b",
+    "ts": 1775054696917,
+    "perfTs": 1168.1000000238419,
+    "traceId": "t-mng5qhud-gcv5ck",
     "kind": "method:call",
     "component": "userDialog",
     "componentLabel": "userDialog",
     "displayLabel": "userDialog.open()"
   },
   {
-    "ts": 1774472329874,
-    "perfTs": 719.3000000119209,
-    "traceId": "t-mn6j0ck2-ks96yc",
+    "ts": 1775054696949,
+    "perfTs": 1199.5,
+    "traceId": "i-mng5qhu8-5dpcnf",
     "kind": "focus:change",
     "component": "Button",
+    "componentLabel": "Add User",
     "eventName": "lostFocus",
     "ariaName": "Add User",
     "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
@@ -101,10 +98,10 @@
     }
   },
   {
-    "ts": 1774472329878,
-    "perfTs": 723.1999999880791,
-    "traceId": "i-mn6j0cjg-i1dy1q",
-    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"duration\": 23.599999964237213,\n    \"startPerfTs\": 699.5,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\",\n    \"traceId\": \"i-mn6j0cjg-i1dy1q\"\n  }\n]",
+    "ts": 1775054696952,
+    "perfTs": 1202.7999999523163,
+    "traceId": "i-mng5qhu8-5dpcnf",
+    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"click\",\n    \"componentType\": \"Button\",\n    \"componentLabel\": \"Add User\",\n    \"duration\": 36.60000002384186,\n    \"startPerfTs\": 1166.1000000238419,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 845,\n      \"end\": 959\n    },\n    \"handlerCode\": \"editingUserId = null; userDialog.open()\",\n    \"traceId\": \"i-mng5qhu8-5dpcnf\"\n  }\n]",
     "kind": "handler:complete",
     "eventName": "click",
     "componentType": "Button",
@@ -114,58 +111,18 @@
       "start": 845,
       "end": 959
     },
-    "duration": 23.599999964237213,
-    "startPerfTs": 699.5,
+    "duration": 36.60000002384186,
+    "startPerfTs": 1166.1000000238419,
     "handlerCode": "editingUserId = null; userDialog.open()"
   },
   {
-    "ts": 1774472329933,
-    "perfTs": 777.8999999761581,
-    "eventTs": 775.8000000119209,
-    "kind": "interaction",
-    "eventName": "click",
-    "uid": "userDialog",
-    "traceId": "i-mn6j0clp-joplwc",
-    "componentType": "ModalDialog",
-    "componentLabel": "Add User",
-    "interaction": "click",
-    "ariaRole": "button",
-    "ariaName": "Save",
-    "detail": {
-      "componentId": "userDialog",
-      "targetTag": "BUTTON",
-      "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
-      "text": "Add UserName*Email*CancelSaveclose",
-      "ariaRole": "button",
-      "ariaName": "Save",
-      "button": 0
-    },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Save\",\n  \"text\": \"Add UserName*Email*CancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save\",\n  \"button\": 0\n}"
-  },
-  {
-    "ts": 1774472329934,
-    "perfTs": 779.3000000119209,
-    "traceId": "i-mn6j0clp-joplwc",
-    "kind": "validation:error",
-    "component": "Form",
-    "displayLabel": "Form: 2 errors: name, email",
-    "errorFields": [
-      "name",
-      "email"
-    ],
-    "errorMessages": [
-      "This field is required",
-      "This field is required"
-    ]
-  },
-  {
-    "ts": 1774472330172,
-    "perfTs": 1017,
-    "traceId": "startup-mn6j0cbp",
+    "ts": 1775054697006,
+    "perfTs": 1256.7999999523163,
+    "traceId": "startup-mng5qhjl",
     "kind": "api:complete",
     "url": "/api/users",
     "method": "GET",
-    "instanceId": "ds-vd50yp-mn6j0cfh",
+    "instanceId": "ds-bwm8sq-mng5qhko",
     "result": [
       {
         "id": 1,
@@ -182,10 +139,52 @@
     ]
   },
   {
-    "ts": 1774472330173,
-    "perfTs": 1018,
-    "traceId": "startup-mn6j0cbp",
-    "instanceId": "ds-vd50yp-mn6j0cfh",
+    "ts": 1775054697007,
+    "perfTs": 1257.2000000476837,
+    "traceId": "startup-mng5qhjl",
+    "instanceId": "ds-bwm8sq-mng5qhko",
+    "dataSourceUrl": "/api/users",
+    "ownerUid": "appUsers",
+    "ownerFileId": "http://localhost:8000/Main.xmlui",
+    "ownerSource": {
+      "start": 70,
+      "end": 119
+    },
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"appUsers\",\n    \"eventName\": \"DataSource:appUsers\",\n    \"instanceId\": \"ds-bwm8sq-mng5qhko\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:appUsers\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:appUsers\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:appUsers\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
+    "kind": "state:changes",
+    "eventName": "DataSource:appUsers",
+    "uid": "appUsers",
+    "componentType": "DataSource",
+    "diffPretty": "path: DataSource:appUsers\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]",
+    "diffJson": [
+      {
+        "path": "DataSource:appUsers",
+        "type": "update",
+        "after": [
+          {
+            "id": 1,
+            "name": "Leanne Graham",
+            "email": "Sincere@april.biz",
+            "phone": "1-770-736-8031"
+          },
+          {
+            "id": 2,
+            "name": "Ervin Howell",
+            "email": "Shanna@melissa.tv",
+            "phone": "010-692-6593"
+          }
+        ],
+        "beforeJson": "undefined",
+        "afterJson": "[\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
+        "diffText": "path: DataSource:appUsers\n- undefined\n+ [\n  {\n    \"id\": 1,\n    \"name\": \"Leanne Graham\",\n    \"email\": \"Sincere@april.biz\",\n    \"phone\": \"1-770-736-8031\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ervin Howell\",\n    \"email\": \"Shanna@melissa.tv\",\n    \"phone\": \"010-692-6593\"\n  }\n]",
+        "diffPretty": "path: DataSource:appUsers\n- undefined\n+ [\n+   {\n+     \"id\": 1,\n+     \"name\": \"Leanne Graham\",\n+     \"email\": \"Sincere@april.biz\",\n+     \"phone\": \"1-770-736-8031\"\n+   },\n+   {\n+     \"id\": 2,\n+     \"name\": \"Ervin Howell\",\n+     \"email\": \"Shanna@melissa.tv\",\n+     \"phone\": \"010-692-6593\"\n+   }\n+ ]"
+      }
+    ]
+  },
+  {
+    "ts": 1775054697007,
+    "perfTs": 1257.3999999761581,
+    "instanceId": "ds-8kd6uf-mng5qhl7",
     "dataSourceUrl": "/api/users",
     "ownerUid": "users",
     "ownerFileId": "http://localhost:8000/components/UsersTab.xmlui",
@@ -193,7 +192,7 @@
       "start": 27,
       "end": 72
     },
-    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-vd50yp-mn6j0cfh\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"users\",\n    \"eventName\": \"DataSource:users\",\n    \"instanceId\": \"ds-8kd6uf-mng5qhl7\",\n    \"diff\": [\n      {\n        \"path\": \"DataSource:users\",\n        \"type\": \"update\",\n        \"after\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ],\n        \"beforeJson\": \"undefined\",\n        \"afterJson\": \"[\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffText\": \"path: DataSource:users\\n- undefined\\n+ [\\n  {\\n    \\\"id\\\": 1,\\n    \\\"name\\\": \\\"Leanne Graham\\\",\\n    \\\"email\\\": \\\"Sincere@april.biz\\\",\\n    \\\"phone\\\": \\\"1-770-736-8031\\\"\\n  },\\n  {\\n    \\\"id\\\": 2,\\n    \\\"name\\\": \\\"Ervin Howell\\\",\\n    \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n    \\\"phone\\\": \\\"010-692-6593\\\"\\n  }\\n]\",\n        \"diffPretty\": \"path: DataSource:users\\n- undefined\\n+ [\\n+   {\\n+     \\\"id\\\": 1,\\n+     \\\"name\\\": \\\"Leanne Graham\\\",\\n+     \\\"email\\\": \\\"Sincere@april.biz\\\",\\n+     \\\"phone\\\": \\\"1-770-736-8031\\\"\\n+   },\\n+   {\\n+     \\\"id\\\": 2,\\n+     \\\"name\\\": \\\"Ervin Howell\\\",\\n+     \\\"email\\\": \\\"Shanna@melissa.tv\\\",\\n+     \\\"phone\\\": \\\"010-692-6593\\\"\\n+   }\\n+ ]\"\n      }\n    ]\n  }\n]",
     "kind": "state:changes",
     "eventName": "DataSource:users",
     "uid": "users",
@@ -225,12 +224,12 @@
     ]
   },
   {
-    "ts": 1774472330178,
-    "perfTs": 1022.8999999761581,
-    "traceId": "i-mn6j0clp-joplwc",
+    "ts": 1775054697015,
+    "perfTs": 1265.7999999523163,
     "kind": "data:bind",
     "component": "Table",
-    "componentLabel": "userTable",
+    "componentLabel": "User list",
+    "ariaName": "User list",
     "displayLabel": "userTable: 0 → 2 items",
     "prevCount": 0,
     "rowCount": 2,
@@ -241,11 +240,155 @@
     }
   },
   {
-    "ts": 1774472330252,
-    "perfTs": 1097.699999988079,
-    "traceId": "t-mn6j0cuk-uphnyg",
+    "ts": 1775054697021,
+    "perfTs": 1272.2000000476837,
+    "traceId": "t-mng5qhx9-ghupdq",
+    "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"didChange\",\n    \"componentType\": \"ChangeListener\",\n    \"componentLabel\": \"\",\n    \"args\": [\n      {\n        \"newValue\": [\n          {\n            \"id\": 1,\n            \"name\": \"Leanne Graham\",\n            \"email\": \"Sincere@april.biz\",\n            \"phone\": \"1-770-736-8031\"\n          },\n          {\n            \"id\": 2,\n            \"name\": \"Ervin Howell\",\n            \"email\": \"Shanna@melissa.tv\",\n            \"phone\": \"010-692-6593\"\n          }\n        ]\n      }\n    ],\n    \"ownerFileId\": \"http://localhost:8000/Main.xmlui\",\n    \"ownerSource\": {\n      \"start\": 275,\n      \"end\": 432\n    },\n    \"handlerCode\": \"() => { if (userCount !== null) return; userCount = (appUsers.value || []).length }\"\n  }\n]",
+    "kind": "handler:start",
+    "eventName": "didChange",
+    "componentType": "ChangeListener",
+    "componentLabel": "",
+    "ownerFileId": "http://localhost:8000/Main.xmlui",
+    "ownerSource": {
+      "start": 275,
+      "end": 432
+    },
+    "handlerCode": "() => { if (userCount !== null) return; userCount = (appUsers.value || []).length }",
+    "eventArgs": [
+      {
+        "newValue": [
+          {
+            "id": 1,
+            "name": "Leanne Graham",
+            "email": "Sincere@april.biz",
+            "phone": "1-770-736-8031"
+          },
+          {
+            "id": 2,
+            "name": "Ervin Howell",
+            "email": "Shanna@melissa.tv",
+            "phone": "010-692-6593"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "ts": 1775054697022,
+    "perfTs": 1272.2999999523163,
+    "traceId": "t-mng5qhx9-ghupdq",
+    "kind": "value:change",
+    "component": "ChangeListener",
+    "displayLabel": "0 → 2 items",
+    "eventName": "didChange",
+    "ownerFileId": "http://localhost:8000/Main.xmlui",
+    "ownerSource": {
+      "start": 275,
+      "end": 432
+    },
+    "newValue": [
+      {
+        "id": 1,
+        "name": "Leanne Graham",
+        "email": "Sincere@april.biz",
+        "phone": "1-770-736-8031"
+      },
+      {
+        "id": 2,
+        "name": "Ervin Howell",
+        "email": "Shanna@melissa.tv",
+        "phone": "010-692-6593"
+      }
+    ]
+  },
+  {
+    "ts": 1775054697035,
+    "perfTs": 1286,
+    "traceId": "t-mng5qhx9-ghupdq",
+    "text": "[\n  \"state:changes\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"didChange\",\n    \"componentType\": \"ChangeListener\",\n    \"componentLabel\": \"\",\n    \"changes\": [\n      {\n        \"path\": \"userCount\",\n        \"action\": \"set\",\n        \"previousValue\": null,\n        \"newValue\": 2\n      }\n    ],\n    \"diff\": [\n      {\n        \"path\": \"userCount\",\n        \"type\": \"update\",\n        \"before\": null,\n        \"after\": 2,\n        \"beforeJson\": \"null\",\n        \"afterJson\": \"2\",\n        \"diffText\": \"path: userCount\\n- null\\n+ 2\",\n        \"diffPretty\": \"path: userCount\\n- null\\n+ 2\"\n      }\n    ]\n  }\n]",
+    "kind": "state:changes",
+    "eventName": "didChange",
+    "componentType": "ChangeListener",
+    "componentLabel": "",
+    "diffPretty": "path: userCount\n- null\n+ 2",
+    "diffJson": [
+      {
+        "path": "userCount",
+        "type": "update",
+        "before": null,
+        "after": 2,
+        "beforeJson": "null",
+        "afterJson": "2",
+        "diffText": "path: userCount\n- null\n+ 2",
+        "diffPretty": "path: userCount\n- null\n+ 2"
+      }
+    ]
+  },
+  {
+    "ts": 1775054697109,
+    "perfTs": 1359.3999999761581,
+    "traceId": "t-mng5qhx9-ghupdq",
+    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"\",\n    \"eventName\": \"didChange\",\n    \"componentType\": \"ChangeListener\",\n    \"componentLabel\": \"\",\n    \"duration\": 87.19999992847443,\n    \"startPerfTs\": 1272.2000000476837,\n    \"ownerFileId\": \"http://localhost:8000/Main.xmlui\",\n    \"ownerSource\": {\n      \"start\": 275,\n      \"end\": 432\n    },\n    \"handlerCode\": \"() => { if (userCount !== null) return; userCount = (appUsers.value || []).length }\",\n    \"traceId\": \"t-mng5qhx9-ghupdq\"\n  }\n]",
+    "kind": "handler:complete",
+    "eventName": "didChange",
+    "componentType": "ChangeListener",
+    "componentLabel": "",
+    "ownerFileId": "http://localhost:8000/Main.xmlui",
+    "ownerSource": {
+      "start": 275,
+      "end": 432
+    },
+    "duration": 87.19999992847443,
+    "startPerfTs": 1272.2000000476837,
+    "handlerCode": "() => { if (userCount !== null) return; userCount = (appUsers.value || []).length }"
+  },
+  {
+    "ts": 1775054697111,
+    "perfTs": 1362,
+    "eventTs": 1345.3999999761581,
+    "kind": "interaction",
+    "eventName": "click",
+    "uid": "userDialog",
+    "traceId": "i-mng5qhzr-r8ian2",
+    "componentType": "ModalDialog",
+    "componentLabel": "Add User",
+    "interaction": "click",
+    "ariaRole": "button",
+    "ariaName": "Save",
+    "detail": {
+      "componentId": "userDialog",
+      "targetTag": "BUTTON",
+      "selectorPath": "[data-testid=\"userDialog\"] >> text=Save",
+      "text": "Add UserName*Email*CancelSaveclose",
+      "ariaRole": "button",
+      "ariaName": "Save",
+      "button": 0
+    },
+    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Save\",\n  \"text\": \"Add UserName*Email*CancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save\",\n  \"button\": 0\n}"
+  },
+  {
+    "ts": 1775054697112,
+    "perfTs": 1363,
+    "traceId": "i-mng5qhzr-r8ian2",
+    "kind": "validation:error",
+    "component": "Form",
+    "displayLabel": "Form: 2 errors: name, email",
+    "errorFields": [
+      "name",
+      "email"
+    ],
+    "errorMessages": [
+      "This field is required",
+      "This field is required"
+    ]
+  },
+  {
+    "ts": 1775054697444,
+    "perfTs": 1695.2000000476837,
+    "traceId": "i-mng5qhzr-r8ian2",
     "kind": "value:change",
     "component": "TextBox",
+    "componentLabel": "Name",
     "displayLabel": "asdf",
     "eventName": "didChange",
     "ariaName": "Name",
@@ -256,13 +399,13 @@
     }
   },
   {
-    "ts": 1774472330384,
-    "perfTs": 1229.5999999642372,
-    "eventTs": 1226.8999999761581,
+    "ts": 1775054697590,
+    "perfTs": 1841.2000000476837,
+    "eventTs": 1837.7000000476837,
     "kind": "interaction",
     "eventName": "click",
     "uid": "userDialog",
-    "traceId": "i-mn6j0cy8-63ykid",
+    "traceId": "i-mng5qid2-ppfsez",
     "componentType": "ModalDialog",
     "componentLabel": "Add User",
     "interaction": "click",
@@ -280,9 +423,9 @@
     "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Save\",\n  \"text\": \"Add UserName*Email*This field is requiredCancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Save\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774472330385,
-    "perfTs": 1230.0999999642372,
-    "traceId": "i-mn6j0cy8-63ykid",
+    "ts": 1775054697591,
+    "perfTs": 1842,
+    "traceId": "i-mng5qid2-ppfsez",
     "kind": "validation:error",
     "component": "Form",
     "displayLabel": "Form: 1 error: email",
@@ -294,11 +437,12 @@
     ]
   },
   {
-    "ts": 1774472330696,
-    "perfTs": 1541.5,
-    "traceId": "t-mn6j0d6w-5p2zbh",
+    "ts": 1775054697914,
+    "perfTs": 2164.5,
+    "traceId": "i-mng5qid2-ppfsez",
     "kind": "value:change",
     "component": "TextBox",
+    "componentLabel": "Email",
     "displayLabel": "abc",
     "eventName": "didChange",
     "ariaName": "Email",
@@ -309,13 +453,13 @@
     }
   },
   {
-    "ts": 1774472330735,
-    "perfTs": 1580.199999988079,
-    "eventTs": 1576.0999999642372,
+    "ts": 1775054698185,
+    "perfTs": 2436.100000023842,
+    "eventTs": 2424.600000023842,
     "kind": "interaction",
     "eventName": "click",
     "uid": "userDialog",
-    "traceId": "i-mn6j0d7z-0ooivt",
+    "traceId": "i-mng5qitl-4jr20z",
     "componentType": "ModalDialog",
     "componentLabel": "Add User",
     "interaction": "click",
@@ -323,22 +467,22 @@
     "ariaName": "Add User",
     "detail": {
       "componentId": "userDialog",
-      "targetTag": "DIV",
-      "text": "Add UserName*Email*This field is requiredPlease enter a valid email addressCa…",
+      "targetTag": "FORM",
+      "text": "Add UserName*Email*Please enter a valid email addressCancelSaveclose",
       "ariaRole": "dialog",
       "ariaName": "Add User",
       "button": 0
     },
-    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"DIV\",\n  \"text\": \"Add UserName*Email*This field is requiredPlease enter a valid email addressCa…\",\n  \"ariaRole\": \"dialog\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
+    "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"FORM\",\n  \"text\": \"Add UserName*Email*Please enter a valid email addressCancelSaveclose\",\n  \"ariaRole\": \"dialog\",\n  \"ariaName\": \"Add User\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774472330851,
-    "perfTs": 1696,
-    "eventTs": 1693.699999988079,
+    "ts": 1775054698306,
+    "perfTs": 2557.2000000476837,
+    "eventTs": 2554.5,
     "kind": "interaction",
     "eventName": "click",
     "uid": "userDialog",
-    "traceId": "i-mn6j0db7-t1pj5n",
+    "traceId": "i-mng5qiwy-hymzud",
     "componentType": "ModalDialog",
     "componentLabel": "Add User",
     "interaction": "click",
@@ -356,9 +500,9 @@
     "text": "{\n  \"componentId\": \"userDialog\",\n  \"targetTag\": \"BUTTON\",\n  \"selectorPath\": \"[data-testid=\\\"userDialog\\\"] >> text=Cancel\",\n  \"text\": \"Add UserName*Email*Please enter a valid email addressCancelSaveclose\",\n  \"ariaRole\": \"button\",\n  \"ariaName\": \"Cancel\",\n  \"button\": 0\n}"
   },
   {
-    "ts": 1774472330851,
-    "perfTs": 1696.699999988079,
-    "traceId": "i-mn6j0db7-t1pj5n",
+    "ts": 1775054698308,
+    "perfTs": 2558.2000000476837,
+    "traceId": "i-mng5qiwy-hymzud",
     "text": "[\n  \"handler:start\",\n  {\n    \"uid\": \"userDialog\",\n    \"eventName\": \"close\",\n    \"componentType\": \"ModalDialog\",\n    \"componentLabel\": \"Add User\",\n    \"args\": [],\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 72,\n      \"end\": 743\n    },\n    \"handlerCode\": \"editingUserId = null\"\n  }\n]",
     "kind": "handler:start",
     "eventName": "close",
@@ -373,10 +517,10 @@
     "handlerCode": "editingUserId = null"
   },
   {
-    "ts": 1774472330852,
-    "perfTs": 1697.5999999642372,
-    "traceId": "i-mn6j0db7-t1pj5n",
-    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"userDialog\",\n    \"eventName\": \"close\",\n    \"componentType\": \"ModalDialog\",\n    \"componentLabel\": \"Add User\",\n    \"returnValue\": null,\n    \"duration\": 0.8999999761581421,\n    \"startPerfTs\": 1696.699999988079,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 72,\n      \"end\": 743\n    },\n    \"handlerCode\": \"editingUserId = null\",\n    \"traceId\": \"i-mn6j0db7-t1pj5n\"\n  }\n]",
+    "ts": 1775054698309,
+    "perfTs": 2559.5,
+    "traceId": "i-mng5qiwy-hymzud",
+    "text": "[\n  \"handler:complete\",\n  {\n    \"uid\": \"userDialog\",\n    \"eventName\": \"close\",\n    \"componentType\": \"ModalDialog\",\n    \"componentLabel\": \"Add User\",\n    \"returnValue\": null,\n    \"duration\": 1.2999999523162842,\n    \"startPerfTs\": 2558.2000000476837,\n    \"ownerFileId\": \"http://localhost:8000/components/UsersTab.xmlui\",\n    \"ownerSource\": {\n      \"start\": 72,\n      \"end\": 743\n    },\n    \"handlerCode\": \"editingUserId = null\",\n    \"traceId\": \"i-mng5qiwy-hymzud\"\n  }\n]",
     "kind": "handler:complete",
     "eventName": "close",
     "componentType": "ModalDialog",
@@ -387,8 +531,8 @@
       "start": 72,
       "end": 743
     },
-    "duration": 0.8999999761581421,
-    "startPerfTs": 1696.699999988079,
+    "duration": 1.2999999523162842,
+    "startPerfTs": 2558.2000000476837,
     "handlerCode": "editingUserId = null"
   }
 ]

@@ -1,4 +1,12 @@
-<App name="Regression" layout="vertical">
+<App name="Regression" layout="vertical" global.globalUserCount="{0}">
+
+  <DataSource id="appUsers" url="/api/users" />
+  <global name="globalUserCount" value="{(appUsers.value || []).length}" />
+  <variable name="variableUserCount" value="{(appUsers.value || []).length}" />
+  <ChangeListener
+    listenTo="{appUsers.value}"
+    onDidChange="() => { if (userCount !== null) return; userCount = (appUsers.value || []).length }"
+  />
 
   <AppHeader>
     <Text fontWeight="bold">Regression</Text>
@@ -8,11 +16,18 @@
 
   <NavPanel>
     <NavGroup label="Initial tests">
-    <NavLink label="Users" to="/" exact="true" />
-    <NavLink label="Settings" to="/settings" />
-    <NavLink label="Charts" to="/charts" />
-    <NavLink label="Search" to="/search" />
-    <NavLink label="LondonTube" to="/london-tube" />
+      <NavLink label="Users" to="/" exact="true" />
+      <NavLink label="Settings" to="/settings" />
+      <NavLink label="Charts" to="/charts" />
+      <NavLink label="Search" to="/search" />
+      <NavLink label="LondonTube" to="/london-tube" />
+    </NavGroup>
+    <NavGroup label="Scripting & Reactivity">
+      <NavLink label="Variable types" to="/var-types" />
+      <NavLink label="Function reactivity" to="/func-reactivity" />
+      <NavLink label="DS across components" to="/ds-cross" />
+      <NavLink label="ChangeListener" to="/changelistener" />
+      <NavLink label="Local modifications" to="/local-mods" />
     </NavGroup>
     <NavLink label="About" to="/about" />
   </NavPanel>
@@ -23,6 +38,11 @@
     <Page url="/charts"><ChartsTab /></Page>
     <Page url="/search"><SearchTab /></Page>
     <Page url="/london-tube"><LondonTubeTab /></Page>
+    <Page url="/var-types"><VarTypesPage /></Page>
+    <Page url="/func-reactivity"><FuncReactivityPage /></Page>
+    <Page url="/ds-cross"><DsCrossPage /></Page>
+    <Page url="/changelistener"><ChangeListenerPage /></Page>
+    <Page url="/local-mods"><LocalModsPage /></Page>
     <Page url="/about"><AboutTab /></Page>
   </Pages>
 

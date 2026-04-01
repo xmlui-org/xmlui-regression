@@ -12,5 +12,6 @@
     <Table data="{countries}" height="300px">
       <Column bindTo="name" />
     </Table>
+    <ViewSource file="SearchTab.xmlui" />
   </VStack>
 </Component>
