@@ -7,10 +7,11 @@
       import { createHighlighterCoreSync } from 'https://esm.sh/shiki@3.4.2/core';
       import { createJavaScriptRegexEngine } from 'https://esm.sh/shiki@3.4.2/engine/javascript';
 
+      const base = new URL('.', import.meta.url).href;
       const [grammar, themeLight, themeDark] = await Promise.all([
-        fetch('/xmlui/syntax/xmlui.tmLanguage.json').then(r => r.json()),
-        fetch('/xmlui/syntax/xmlui-light.json').then(r => r.json()),
-        fetch('/xmlui/syntax/xmlui-dark.json').then(r => r.json()),
+        fetch(base + 'xmlui/syntax/xmlui.tmLanguage.json').then(r => r.json()),
+        fetch(base + 'xmlui/syntax/xmlui-light.json').then(r => r.json()),
+        fetch(base + 'xmlui/syntax/xmlui-dark.json').then(r => r.json()),
       ]);
 
       const highlighter = createHighlighterCoreSync({
