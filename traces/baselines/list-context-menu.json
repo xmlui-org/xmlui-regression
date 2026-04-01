@@ -1,0 +1,79 @@
+{
+  "steps": [
+    {
+      "action": "click",
+      "target": {
+        "component": "Layout & Interaction",
+        "label": "Layout & Interaction",
+        "targetTag": "DIV",
+        "ariaName": "Layout & Interaction"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "List & context menu",
+        "label": "List & context menu",
+        "targetTag": "DIV",
+        "ariaName": "List & context menu"
+      }
+    },
+    {
+      "action": "contextmenu",
+      "target": {
+        "component": "div",
+        "label": null,
+        "targetTag": "DIV",
+        "ariaName": "Dashboard row"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Edit Dashboard",
+        "label": "Edit Dashboard",
+        "targetTag": "DIV",
+        "ariaRole": "menuitem",
+        "ariaName": "Edit feature"
+      }
+    },
+    {
+      "action": "contextmenu",
+      "target": {
+        "component": "div",
+        "label": null,
+        "targetTag": "DIV",
+        "ariaName": "Analytics row"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Duplicate Analytics",
+        "label": "Duplicate Analytics",
+        "targetTag": "DIV",
+        "ariaRole": "menuitem",
+        "ariaName": "Duplicate feature"
+      }
+    },
+    {
+      "action": "contextmenu",
+      "target": {
+        "component": "div",
+        "label": null,
+        "targetTag": "DIV",
+        "ariaName": "Reports row"
+      }
+    },
+    {
+      "action": "click",
+      "target": {
+        "component": "Archive Reports",
+        "label": "Archive Reports",
+        "targetTag": "DIV",
+        "ariaRole": "menuitem",
+        "ariaName": "Archive feature"
+      }
+    }
+  ]
+}

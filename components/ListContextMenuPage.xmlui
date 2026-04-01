@@ -1,0 +1,62 @@
+<Component name="ListContextMenuPage">
+  <variable name="lastAction" value="(none)" />
+  <variable name="items" value="{[
+    { name: 'Dashboard', status: 'active', icon: 'home' },
+    { name: 'Analytics', status: 'beta', icon: 'bar-chart' },
+    { name: 'Settings', status: 'active', icon: 'settings' },
+    { name: 'Reports', status: 'deprecated', icon: 'file-text' },
+    { name: 'Users', status: 'active', icon: 'users' }
+  ]}" />
+
+  <VStack padding="$space-4" gap="$space-4">
+    <H2>List and context menu</H2>
+    <Text>Right-click items for actions. Click items to select.</Text>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">1. List with custom cards and context menu</Text>
+        <List data="{items}" aria-label="Feature list">
+          <HStack
+            aria-label="{$item.name + ' row'}"
+            padding="$space-2"
+            gap="$space-3"
+            verticalAlignment="center"
+            onContextMenu="ev => featureMenu.openAt(ev, $item)">
+            <Icon name="{$item.icon}" />
+            <Text>{$item.name}</Text>
+            <SpaceFiller />
+            <Badge aria-label="{$item.name + ' status'}" value="{$item.status}" />
+          </HStack>
+        </List>
+        <Text aria-label="last action" role="status">Last action: {lastAction}</Text>
+      </VStack>
+    </Card>
+
+    <Card>
+      <VStack gap="$space-2" padding="$space-2">
+        <Text variant="strong">2. Grouped list</Text>
+        <List
+          data="{items}"
+          aria-label="Grouped feature list"
+          groupBy="status">
+          <Text>{$item.name}</Text>
+        </List>
+      </VStack>
+    </Card>
+
+    <ContextMenu id="featureMenu" aria-label="Feature context menu" menuWidth="200px">
+      <MenuItem aria-label="Edit feature" onClick="lastAction = 'Edit ' + $context.name">
+        Edit {$context.name}
+      </MenuItem>
+      <MenuItem aria-label="Duplicate feature" onClick="lastAction = 'Duplicate ' + $context.name">
+        Duplicate {$context.name}
+      </MenuItem>
+      <MenuSeparator />
+      <MenuItem aria-label="Archive feature" onClick="lastAction = 'Archive ' + $context.name">
+        Archive {$context.name}
+      </MenuItem>
+    </ContextMenu>
+
+    <ViewSource file="ListContextMenuPage.xmlui" hasDescription="true" />
+  </VStack>
+</Component>

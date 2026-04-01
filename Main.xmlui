@@ -32,6 +32,7 @@
     <NavGroup label="Layout & Interaction" aria-label="Layout & Interaction">
       <NavLink label="Tabs & deep links" to="/tabs-deep-link" />
       <NavLink label="Drawer" to="/drawer" />
+      <NavLink label="List & context menu" to="/list-context-menu" />
     </NavGroup>
     <NavLink label="About" to="/about" />
   </NavPanel>
@@ -49,6 +50,7 @@
     <Page url="/local-mods"><LocalModsPage /></Page>
     <Page url="/tabs-deep-link"><TabsDeepLinkPage /></Page>
     <Page url="/drawer"><DrawerPage /></Page>
+    <Page url="/list-context-menu"><ListContextMenuPage /></Page>
     <Page url="/about"><AboutTab /></Page>
   </Pages>
 
